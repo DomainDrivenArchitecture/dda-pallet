@@ -14,14 +14,14 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.dda-crate
+(ns org.domaindrivenarchitecture.pallet.core.dda-crate
   (:require 
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.api :as api]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.dda-crate.internals :as internals]
-    [org.domaindrivenarchitecture.pallet.dda-crate.versions :as versions]))
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.internals :as internals]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.versions :as versions]))
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"
@@ -33,8 +33,12 @@
   "Protocol for pallet-related crate functions"
   (settings-raw [dda-crate dda-pallet-runtime] 
                 "Raw implementation of settings phase")
+  (configure-raw [dda-crate dda-pallet-runtime]
+               "Raw implementation of configure phase")
   (install-raw [dda-crate dda-pallet-runtime]
-               "Raw implementation of install phase"))
+               "Raw implementation of install phase")
+  (app-rollout-raw [dda-crate dda-pallet-runtime]
+               "Raw implementation of app-rollout phase"))
 
 (s/defrecord DdaCrate 
   [facility :- s/Keyword
@@ -48,7 +52,7 @@
 (s/defn dda-phase-dispatcher
   "Dispatcher for multimethods of phases by facility. Also does a 
    schema validation of arguments."
-  [dda-crate ; TODO:- DdaCrate
+  [dda-crate :- DdaCrate
    effective-configuration :- {s/Keyword s/Any}]
   (:facility dda-crate))
 
@@ -60,6 +64,14 @@
     (logging/info 
       "No dda-settings phase of" (str dda-crate) "(Doing nothing).")))
 
+(defmulti dda-configure
+  "Multimethod for configure phase of a DdaCrate."
+  dda-phase-dispatcher)
+(defmethod dda-configure :default [dda-crate effective-configuration]
+  (actions/as-action
+    (logging/info 
+      "No dda-configure phase of" (str dda-crate) "(Doing nothing).")))
+
 (defmulti dda-install
   "Multimethod for install phase of a DdaCrate."
   dda-phase-dispatcher)
@@ -68,24 +80,38 @@
     (logging/info 
       "No dda-install phase of" (str dda-crate) "(Doing nothing).")))
 
+(defmulti dda-app-rollout
+  "Multimethod for app-rollout phase of a DdaCrate."
+  dda-phase-dispatcher)
+(defmethod dda-settings :default [dda-crate effective-configuration]
+  (actions/as-action
+    (logging/info 
+      "No dda-app-rollout phase of" (str dda-crate) "(Doing nothing).")))
+
 (extend-type DdaCrate
   DdaCratePhasesSpecification
   (settings-raw [dda-crate dda-pallet-runtime] 
     (internals/node-read-state dda-crate)
     (dda-settings dda-crate {}))
+  (configure-raw [dda-crate dda-pallet-runtime] 
+    (dda-configure dda-crate {}))
   (install-raw [dda-crate dda-pallet-runtime] 
     (actions/as-action 
       (logging/info "Nodeversion of" (str dda-crate) 
                     "is" (internals/node-get-nv-state dda-crate)))
     (dda-install dda-crate {})
     (internals/node-write-state dda-crate))
+  (app-rollout-raw [dda-crate dda-pallet-runtime] 
+    (dda-app-rollout dda-crate {}))
   
   DdaCratePalletSpecification
   (create-server-spec [dda-crate] 
     (api/server-spec
       :phases 
       {:settings (api/plan-fn (settings-raw dda-crate nil))
+       :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
+       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))
        }))
   )
 

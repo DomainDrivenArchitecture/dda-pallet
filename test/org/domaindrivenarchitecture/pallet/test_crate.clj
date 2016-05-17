@@ -14,6 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
+; TODO: review mje 2016.05.17: move to pallet-commons
 (ns org.domaindrivenarchitecture.pallet.test-crate
   (:require 
     [pallet.actions :as actions]
@@ -25,8 +26,8 @@
     [pallet.node-value :as nv]
     [pallet.repl]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.dda-crate :refer :all]
-    [org.domaindrivenarchitecture.pallet.dda-crate.versions :refer :all]))
+    [org.domaindrivenarchitecture.pallet.core.dda-crate :refer :all]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.versions :refer :all]))
 
 (schema.core/set-fn-validation! true)
 

@@ -14,16 +14,17 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.dda-crate.versions
+; TODO: review mje 2016.05.17: rename to singular
+(ns org.domaindrivenarchitecture.pallet.core.dda-crate.versions
   (:require 
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.core.session :as session]
     [pallet.node-value :as nv]
-    [org.domaindrivenarchitecture.pallet.dda-crate.internals :as internals]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.internals :as internals]
     ))
 
-; Pull VersionSchema in this ns to avoid the exposure of internals
+; TODO: review mje 2016.05.17: use config-commons version instead
 (def VersionSchema internals/VersionSchema)
 
 (defmacro plan-when-cleaninstall [dda-crate & crate-fns-or-actions]
