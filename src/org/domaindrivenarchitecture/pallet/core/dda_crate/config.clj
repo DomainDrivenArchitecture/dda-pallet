@@ -14,30 +14,30 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.crate.config
+(ns org.domaindrivenarchitecture.pallet.core.dda-crate.config
   (:require
     [pallet.api :as api]
     [pallet.crate :as crate]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate :as dda-crate]
     ))
 
-(defmethod dda-core/dda-settings :dda-config [dda-crate effective-config]  
-  (let [id (crate/target-id)
-        config (get-in dda-crate [:default-config])
-        node-specific-config (get-in config [id :node-specifig-config])]
-    (crate/assoc-settings 
-      (get-in dda-crate [:facility])    
-      {:global-config config
-       :node-specific-config node-specific-config})
-    ))
-
-(defn with-config
+(defn get-global-config
   ""
-  [config]
-  (let 
-    [config-crate (dda-crate/make-dda-crate
-                    :facility :dda-config 
-                    :version [1 4 0]
-                    :config-default config)]
-    (dda-crate/create-server-spec config-crate)
-    ))
+  [facility]
+  (-> (crate/get-settings facility) 
+    :global-config)
+  )
+
+(defn get-nodespecific-config
+  ""
+  [facility]
+    (-> (crate/get-settings facility) 
+      :node-specific-config)
+  )
+
+(defn get-nodespecific-additional-config
+  ""
+  [facility]
+  (-> (get-nodespecific-config facility) 
+    :additional-config 
+    facility)
+  )
