@@ -14,11 +14,11 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.ddacrate.internals-test
+(ns org.domaindrivenarchitecture.pallet.dda-crate.internals-test
   (:require
     [clojure.test :refer :all]
     [schema.core :as s]
-    [org.domaindrivenarchitecture.pallet.ddacrate.internals :as sut]))
+    [org.domaindrivenarchitecture.pallet.dda-crate.internals :as sut]))
 
 (deftest version-conversions
   (testing "ver_fromstr: string to vector conversion" 

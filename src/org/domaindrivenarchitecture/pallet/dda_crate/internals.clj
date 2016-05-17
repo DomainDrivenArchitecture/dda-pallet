@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.ddacrate.internals
+(ns org.domaindrivenarchitecture.pallet.dda-crate.internals
   (:require 
     [schema.core :as s]
     [clojure.tools.logging :as logging]

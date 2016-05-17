@@ -14,14 +14,14 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.ddacrate
+(ns org.domaindrivenarchitecture.pallet.dda-crate
   (:require 
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.api :as api]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.ddacrate.internals :as internals]
-    [org.domaindrivenarchitecture.pallet.ddacrate.versions :as versions]))
+    [org.domaindrivenarchitecture.pallet.dda-crate.internals :as internals]
+    [org.domaindrivenarchitecture.pallet.dda-crate.versions :as versions]))
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"

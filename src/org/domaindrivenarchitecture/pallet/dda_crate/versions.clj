@@ -14,13 +14,13 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.ddacrate.versions
+(ns org.domaindrivenarchitecture.pallet.dda-crate.versions
   (:require 
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.core.session :as session]
     [pallet.node-value :as nv]
-    [org.domaindrivenarchitecture.pallet.ddacrate.internals :as internals]
+    [org.domaindrivenarchitecture.pallet.dda-crate.internals :as internals]
     ))
 
 ; Pull VersionSchema in this ns to avoid the exposure of internals

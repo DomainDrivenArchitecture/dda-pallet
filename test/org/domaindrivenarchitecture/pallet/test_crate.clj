@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.ddacrate.testcrate
+(ns org.domaindrivenarchitecture.pallet.test-crate
   (:require 
     [pallet.actions :as actions]
     [pallet.api]
@@ -25,8 +25,8 @@
     [pallet.node-value :as nv]
     [pallet.repl]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.ddacrate :refer :all]
-    [org.domaindrivenarchitecture.pallet.ddacrate.versions :refer :all]))
+    [org.domaindrivenarchitecture.pallet.dda-crate :refer :all]
+    [org.domaindrivenarchitecture.pallet.dda-crate.versions :refer :all]))
 
 (schema.core/set-fn-validation! true)
 
