@@ -65,5 +65,3 @@
            :compute node-list
            :phase '(:settings :install))
     :show-detail false)
-
-(ns-name *ns*)

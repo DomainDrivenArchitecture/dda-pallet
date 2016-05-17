@@ -147,5 +147,3 @@
   (s/validate
     DdaCrate
     (->DdaCrate facility version config-default config-schema)))
-
-(ns-name *ns*)
