@@ -11,7 +11,8 @@
                  [ch.qos.logback/logback-classic "1.1.7"]]
   :profiles {:dev
              {:dependencies
-              [[com.palletops/pallet "0.8.12" :classifier "tests"]]
+              [[org.clojure/test.check "0.9.0"]
+               [com.palletops/pallet "0.8.12" :classifier "tests"]]
               :plugins
               [[com.palletops/pallet-lein "0.8.0-alpha.1"]]}
               :leiningen/reply

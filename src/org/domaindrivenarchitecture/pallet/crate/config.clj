@@ -21,7 +21,7 @@
     [org.domaindrivenarchitecture.pallet.core.dda-crate :as dda-crate]
     ))
 
-(defmethod dda-core/dda-settings :dda-config [dda-crate effective-config]  
+(defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]  
   (let [id (crate/target-id)
         config (get-in dda-crate [:default-config])
         node-specific-config (get-in config [id :node-specifig-config])]
