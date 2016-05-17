@@ -14,7 +14,6 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-; TODO: review mje 2016.05.17: move to pallet-commons
 (ns org.domaindrivenarchitecture.pallet.test-crate
   (:require 
     [pallet.actions :as actions]

@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-; TODO: review mje 2016.05.17: rename to singular
+; TODO: review mje 2016.05.17: rename to singular "versioned-plan"
 (ns org.domaindrivenarchitecture.pallet.core.dda-crate.versions
   (:require 
     [schema.core :as s]
