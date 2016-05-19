@@ -52,10 +52,10 @@
   (toString [_] (str "DdaCrate[facility=" (:facility _) 
                      " ver=" (:version _)"]")))
 
-(s/defn dispatch-by-crate-facility
+(defn dispatch-by-crate-facility
   "Dispatcher for phase multimethods by facility. Also does a 
    schema validation of arguments."
-  [dda-crate :- DdaCrate
+  [dda-crate ;:- DdaCrate
    effective-configuration]
   (:facility dda-crate))
 
@@ -94,7 +94,7 @@
 (defmulti dda-app-rollout
   "Multimethod for app-rollout phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-settings :default [dda-crate effective-configuration]
+(defmethod dda-app-rollout :default [dda-crate effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-app-rollout phase of" (str dda-crate) "(Doing nothing).")))
@@ -132,6 +132,7 @@
     (api/server-spec
       :phases 
       {:settings (api/plan-fn (settings-raw dda-crate nil))
+       :init (api/plan-fn (init-raw dda-crate nil))
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
        :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))

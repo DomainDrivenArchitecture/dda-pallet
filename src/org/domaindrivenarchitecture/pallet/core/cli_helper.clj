@@ -31,7 +31,7 @@
     (api/lift
       group-spec
       ;TODO: review jem 2016.05.17: remove direct config access here - use session instead
-      :user (cm-user/get-cm-user (get-in config [id :node-specific-config])) 
+      :user (cm-user/get-cm-user (get-in config [:node-specific-config id])) 
       :compute provider
       :phase :init)
     :show-detail false))
