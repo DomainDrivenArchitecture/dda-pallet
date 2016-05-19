@@ -20,8 +20,8 @@
     [pallet.actions :as actions]
     [pallet.api :as api]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.internals :as internals]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.versions :as versions]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :as vp]
+    [org.domaindrivenarchitecture.config.commons.version-model :as version-model]
     [org.domaindrivenarchitecture.pallet.core.dda-crate.config :as config]))
 
 (defprotocol DdaCratePalletSpecification
@@ -45,7 +45,7 @@
 
 (s/defrecord DdaCrate 
   [facility :- s/Keyword
-   version :- versions/VersionSchema
+   version :- version-model/Version
    config-default :- {s/Keyword s/Any}
    config-schema :- {s/Any s/Any}]
   Object
@@ -104,7 +104,7 @@
   (settings-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
-      (internals/node-read-state dda-crate)
+      (vp/node-read-state dda-crate)
       (dda-settings dda-crate effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
@@ -118,10 +118,10 @@
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action 
-        (logging/info "Nodeversion of" (str dda-crate) 
-                      "is" (internals/node-get-nv-state dda-crate)))
+        (logging/info "Nodeversion of" (str dda-crate)
+                      "is" (vp/node-get-nv-state dda-crate)))
       (dda-install dda-crate effective-config)
-      (internals/node-write-state dda-crate)))
+      (vp/node-write-state dda-crate)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]

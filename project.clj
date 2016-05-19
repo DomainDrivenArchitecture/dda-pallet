@@ -8,7 +8,8 @@
                  [prismatic/schema "1.1.1"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
-                 [ch.qos.logback/logback-classic "1.1.7"]]
+                 [ch.qos.logback/logback-classic "1.1.7"]
+                 [org.domaindrivenarchitecture/dda-config-commons "0.1.2.1-SNAPSHOT"]]
   :profiles {:dev
              {:dependencies
               [[org.clojure/test.check "0.9.0"]

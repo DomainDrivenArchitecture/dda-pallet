@@ -26,14 +26,15 @@
     [pallet.repl]
     [clojure.tools.logging :as logging]
     [org.domaindrivenarchitecture.pallet.core.dda-crate :refer :all]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.versions :refer :all]))
+    [org.domaindrivenarchitecture.config.commons.version-model :refer :all]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :refer :all]))
 
 (schema.core/set-fn-validation! true)
 
 (def TestCrate 
   (make-dda-crate
     :facility :testcrate 
-    :version [1 3]))
+    :version [1 3 0]))
 
 (defmethod dda-install :testcrate [dda-crate config]  
   (plan-when-cleaninstall dda-crate
