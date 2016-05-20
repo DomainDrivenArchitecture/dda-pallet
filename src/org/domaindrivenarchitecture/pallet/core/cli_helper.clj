@@ -16,26 +16,13 @@
 
 (ns org.domaindrivenarchitecture.pallet.core.cli-helper
   (:require
+    [clojure.tools.cli :as cli]
+    [clojure.string :as string]
     [pallet.api :as api]
     [pallet.repl :as repl]
-    [org.domaindrivenarchitecture.pallet.crate.config.node :as node-type]
-    [org.domaindrivenarchitecture.pallet.crate.user.user-for-transport :as cm-user]))
-
-    
-(defn execute-init-node
-  [& {:keys [id
-             group-spec
-             config 
-             provider]}]
-  (repl/explain-session 
-    (api/lift
-      group-spec
-      ;TODO: review jem 2016.05.17: remove direct config access here - use session instead
-      :user (cm-user/get-cm-user (get-in config [:node-specific-config id])) 
-      :compute provider
-      :phase :init)
-    :show-detail false))
-  
+    [org.domaindrivenarchitecture.pallet.core.user-for-transport :as cm-user]
+    [org.domaindrivenarchitecture.pallet.crate.config.node :as node-type]))
+ 
 (def cli-options
   [["-h" "--help"]])
 
@@ -76,17 +63,37 @@
            :phase phase)
     :show-detail false))
 
+
+(defn execute-init-node
+  [& {:keys [id
+             group-spec
+             config 
+             provider]}]
+  (repl/explain-session 
+    (api/lift
+      group-spec
+      ;TODO: review jem 2016.05.17: remove direct config access here - use session instead
+      :user (cm-user/get-cm-user (get-in config [:node-specific-config id])) 
+      :compute provider
+      :phase :init)
+    :show-detail false))
+
 (defn main
   "Main function takes a String as Argument to decide what function to call - needed when deploying standalone jar files."
-  [& args]
+  [node-id group-spec node-list config & args]
   (let [{:keys [options arguments errors summary]} (cli/parse-opts args cli-options)]
     (cond
       (:help options) (exit 0 (usage summary))
       (not= (count arguments) 1) (exit 1 (usage summary))
       errors (exit 1 (error-msg errors)))
     (case (first arguments)
-      "init" (spec/init-node :id :meissa-ide :group-spec (spec/managed-ide-group))
-      "install" (cli-helper/execute-main (spec/managed-ide-group) spec/node-list :phase '(:settings :install))
-      "configure" (cli-helper/execute-main (spec/managed-ide-group) spec/node-list :phase '(:settings :configure))
+      "init" 
+      (execute-init-node 
+        :id node-id 
+        :group-spec group-spec
+        :config config
+        :provider node-list)
+      "install" (execute-main group-spec node-list :phase '(:settings :install))
+      "configure" (execute-main group-spec node-list :phase '(:settings :configure))
       (exit 1 (usage summary)))
     ))

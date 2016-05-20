@@ -14,30 +14,36 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.core.dda-crate.config
+;Deprercated
+
+(ns org.domaindrivenarchitecture.pallet.core.user-for-transport
   (:require
-    [pallet.api :as api]
-    [pallet.crate :as crate]
+    [pallet.api :as api]))
+
+(defn get-cm-user
+  ([node]
+  (let [user-name (:pallet-cm-user-name node)
+        user-pwd (:pallet-cm-user-password node)]
+    (get-cm-user user-name user-pwd)
     ))
-
-(defn get-global-config
-  ""
-  []
-  (-> (crate/get-settings :dda-config) 
-    :global-config)
+  ([user-name user-pwd]
+    (if (nil? user-pwd)
+      (api/make-user user-name)
+      (api/make-user 
+        user-name 
+        :password user-pwd 
+        :no-sudo (= user-name "root")))
+    )  
   )
 
-(defn get-nodespecific-config
-  ""
-  []
-    (-> (crate/get-settings :dda-config) 
-      :node-specific-config)
+(defn password-user-for-cm
+  "create the user to bootstrap the system"
+  [user-name user-password]
+  (api/make-user user-name :password user-password :no-sudo (= user-name "root"))
   )
 
-(defn get-nodespecific-additional-config
-  ""
-  [custom-facility]
-  (-> (get-nodespecific-config) 
-    :additional-config 
-    custom-facility)
+(defn pallet-user-for-cm
+  "create the user for regular further configuration"
+  []
+  (api/make-user "pallet")
   )
