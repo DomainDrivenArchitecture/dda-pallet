@@ -36,6 +36,33 @@
       :phase :init)
     :show-detail false))
   
+(def cli-options
+  [["-h" "--help"]])
+
+(defn usage [options-summary]
+  (->> ["meissa-managed-ide installs and configures the whole ide to localhost."
+        ""
+        "Usage: program-name [options] action"
+        ""
+        "Options:"
+        options-summary
+        ""
+        "Actions:"
+        "  init      initialized localhost"
+        "  install   installs software to localhost - is done only once."
+        "  configure adjust configuration - is done everytime."
+        ""
+        "Please refer to the manual page for more information."]
+       (string/join \newline)))
+
+(defn error-msg [errors]
+  (str "The following errors occurred while parsing your command:\n\n"
+       (string/join \newline errors)))
+
+(defn exit [status msg]
+  (println msg)
+  (System/exit status))
+
 (defn execute-main
   [group-spec 
    provider
@@ -48,3 +75,18 @@
            :compute provider
            :phase phase)
     :show-detail false))
+
+(defn main
+  "Main function takes a String as Argument to decide what function to call - needed when deploying standalone jar files."
+  [& args]
+  (let [{:keys [options arguments errors summary]} (cli/parse-opts args cli-options)]
+    (cond
+      (:help options) (exit 0 (usage summary))
+      (not= (count arguments) 1) (exit 1 (usage summary))
+      errors (exit 1 (error-msg errors)))
+    (case (first arguments)
+      "init" (spec/init-node :id :meissa-ide :group-spec (spec/managed-ide-group))
+      "install" (cli-helper/execute-main (spec/managed-ide-group) spec/node-list :phase '(:settings :install))
+      "configure" (cli-helper/execute-main (spec/managed-ide-group) spec/node-list :phase '(:settings :configure))
+      (exit 1 (usage summary)))
+    ))
