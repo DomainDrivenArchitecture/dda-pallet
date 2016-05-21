@@ -52,17 +52,19 @@
   (toString [_] (str "DdaCrate[facility=" (:facility _) 
                      " ver=" (:version _)"]")))
 
-(defn dispatch-by-crate-facility
+(s/defn dispatch-by-crate-facility :- s/Keyword
   "Dispatcher for phase multimethods by facility. Also does a 
    schema validation of arguments."
-  [dda-crate ;:- DdaCrate
+  [dda-crate :- DdaCrate
    effective-configuration]
   (:facility dda-crate))
 
 (defmulti dda-settings
   "Multimethod for settings phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-settings :default [dda-crate effective-configuration]
+(s/defmethod dda-settings :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-settings phase of" (str dda-crate) "(Doing nothing).")))
@@ -70,7 +72,9 @@
 (defmulti dda-init
   "Multimethod for init phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-init :default [dda-crate effective-configuration]
+(s/defmethod dda-init :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-init phase of" (str dda-crate) "(Doing nothing).")))
@@ -78,7 +82,9 @@
 (defmulti dda-configure
   "Multimethod for configure phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-configure :default [dda-crate effective-configuration]
+(s/defmethod dda-configure :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-configure phase of" (str dda-crate) "(Doing nothing).")))
@@ -86,7 +92,9 @@
 (defmulti dda-install
   "Multimethod for install phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-install :default [dda-crate effective-configuration]
+(s/defmethod dda-install :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-install phase of" (str dda-crate) "(Doing nothing).")))
@@ -94,7 +102,9 @@
 (defmulti dda-app-rollout
   "Multimethod for app-rollout phase of a DdaCrate."
   dispatch-by-crate-facility)
-(defmethod dda-app-rollout :default [dda-crate effective-configuration]
+(s/defmethod dda-app-rollout :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
   (actions/as-action
     (logging/info 
       "No dda-app-rollout phase of" (str dda-crate) "(Doing nothing).")))

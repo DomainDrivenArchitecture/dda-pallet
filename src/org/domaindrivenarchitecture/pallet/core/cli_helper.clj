@@ -27,20 +27,21 @@
   [["-h" "--help"]])
 
 (defn usage [options-summary]
-  (->> ["meissa-managed-ide installs and configures the whole ide to localhost."
-        ""
-        "Usage: program-name [options] action"
-        ""
-        "Options:"
-        options-summary
-        ""
-        "Actions:"
-        "  init      initialized localhost"
-        "  install   installs software to localhost - is done only once."
-        "  configure adjust configuration - is done everytime."
-        ""
-        "Please refer to the manual page for more information."]
-       (string/join \newline)))
+  (string/join
+   \newline
+   ["meissa-managed-ide installs and configures the whole ide to localhost."
+    ""
+    "Usage: program-name [options] action"
+    ""
+    "Options:"
+    options-summary
+    ""
+    "Actions:"
+    "  init      initialized localhost"
+    "  install   installs software to localhost - is done only once."
+    "  configure adjust configuration - is done everytime."
+    ""
+    "Please refer to the manual page for more information."]))
 
 (defn error-msg [errors]
   (str "The following errors occurred while parsing your command:\n\n"
