@@ -67,7 +67,7 @@
    effective-configuration]
   (actions/as-action
     (logging/info 
-      "No dda-settings phase of" (str dda-crate) "(Doing nothing).")))
+      (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-init
   "Multimethod for init phase of a DdaCrate."
@@ -77,7 +77,7 @@
    effective-configuration]
   (actions/as-action
     (logging/info 
-      "No dda-init phase of" (str dda-crate) "(Doing nothing).")))
+      (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-configure
   "Multimethod for configure phase of a DdaCrate."
@@ -87,7 +87,7 @@
    effective-configuration]
   (actions/as-action
     (logging/info 
-      "No dda-configure phase of" (str dda-crate) "(Doing nothing).")))
+      (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-install
   "Multimethod for install phase of a DdaCrate."
@@ -97,7 +97,7 @@
    effective-configuration]
   (actions/as-action
     (logging/info 
-      "No dda-install phase of" (str dda-crate) "(Doing nothing).")))
+      (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-app-rollout
   "Multimethod for app-rollout phase of a DdaCrate."
@@ -107,34 +107,38 @@
    effective-configuration]
   (actions/as-action
     (logging/info 
-      "No dda-app-rollout phase of" (str dda-crate) "(Doing nothing).")))
+      (str dda-crate) ": doing nothing.")))
 
 (extend-type DdaCrate
   DdaCratePhasesSpecification
   (settings-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+      (actions/as-action (logging/info (str dda-crate) ": settings phase."))
       (vp/node-read-state dda-crate)
       (dda-settings dda-crate effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
-    (dda-init dda-crate effective-config)))
+      (actions/as-action (logging/info (str dda-crate) ": init phase."))
+      (dda-init dda-crate effective-config)))
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+      (actions/as-action (logging/info (str dda-crate) ": configure phase."))
       (dda-configure dda-crate effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+      (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (actions/as-action 
-        (logging/info "Nodeversion of" (str dda-crate)
-                      "is" (vp/node-get-nv-state dda-crate)))
+        (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
       (dda-install dda-crate effective-config)
       (vp/node-write-state dda-crate)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+      (actions/as-action (logging/info (str dda-crate) ": rollout phase."))
       (dda-app-rollout dda-crate effective-config)))
   
   DdaCratePalletSpecification
