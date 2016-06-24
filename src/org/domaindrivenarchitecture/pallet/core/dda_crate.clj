@@ -21,16 +21,14 @@
     [pallet.api :as api]
     [clojure.tools.logging :as logging]
     [org.domaindrivenarchitecture.config.commons.map-utils :as map-utils]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :as vp]
     [org.domaindrivenarchitecture.config.commons.version-model :as version-model]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.config :as config]))
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.config :as config]
+    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :as vp]))
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"
   (create-server-spec [dda-crate] 
     "Creates a pallet server-spec from the dda-crate")
-  (merge-config [_ partial-config]
-    "merges the partial config with default config & ensures that resulting config is valid.")
   )
 
 (defprotocol DdaCratePhasesSpecification
@@ -53,14 +51,25 @@
    config-schema :- {s/Any s/Any}]
   Object
   (toString [_] (str "DdaCrate[facility=" (:facility _) 
-                     " ver=" (:version _)"]")))
+                     " ver=" (:version _) "]")))
 
 (s/defn dispatch-by-crate-facility :- s/Keyword
   "Dispatcher for phase multimethods by facility. Also does a 
    schema validation of arguments."
-  [dda-crate :- DdaCrate
-   partial-effective-config]
+  [dda-crate :- DdaCrate & _]
   (:facility dda-crate))
+
+
+(defmulti merge-config 
+  "Merges configuration with the crates default configuration"
+  dispatch-by-crate-facility)
+(s/defmethod merge-config :default
+  [dda-crate :- DdaCrate
+   partial-config]
+  (let [default (if (nil? (:config-default dda-crate)) {} (:config-default dda-crate))
+        partial (if (nil? partial-config) {} partial-config)
+        schema (:config-schema dda-crate)]
+    (s/validate schema (map-utils/deep-merge default partial))))
 
 (defmulti dda-settings
   "Multimethod for settings phase of a DdaCrate."
@@ -112,6 +121,7 @@
     (logging/info 
       (str dda-crate) ": doing nothing.")))
 
+
 (extend-type DdaCrate
   DdaCratePhasesSpecification
   (settings-raw [dda-crate dda-pallet-runtime]
@@ -119,30 +129,30 @@
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": settings phase."))
       (vp/node-read-state dda-crate)
-      (dda-settings dda-crate partial-effective-config)))
+      (dda-settings dda-crate (merge-config dda-crate partial-effective-config))))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": init phase."))
-      (dda-init dda-crate partial-effective-config)))
+      (dda-init dda-crate (merge-config dda-crate partial-effective-config))))
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": configure phase."))
-      (dda-configure dda-crate partial-effective-config)))
+      (dda-configure dda-crate (merge-config dda-crate partial-effective-config))))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (actions/as-action 
         (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
-      (dda-install dda-crate partial-effective-config)
+      (dda-install dda-crate (merge-config dda-crate partial-effective-config))
       (vp/node-write-state dda-crate)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": rollout phase."))
-      (dda-app-rollout dda-crate partial-effective-config)))
+      (dda-app-rollout dda-crate (merge-config dda-crate partial-effective-config))))
   
   DdaCratePalletSpecification
   (create-server-spec [dda-crate] 
@@ -153,15 +163,7 @@
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
        :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))
-       }))
-  (merge-config [dda-crate partial-config]
-    (let 
-      [default (get-in dda-crate [:config-default])
-       schema (get-in dda-crate [:config-schema])                    
-       effective-config (map-utils/deep-merge default partial-config)]
-      (s/validate schema effective-config)
-      effective-config)
-    ))
+       })))
 
 (defn make-dda-crate
   "Creates a DdaCrate. (Wrapper for ->DdaCrate with validation.)"
