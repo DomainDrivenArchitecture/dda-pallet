@@ -28,7 +28,7 @@
 (defmacro plan-when-cleaninstall [dda-crate & crate-fns-or-actions]
   "Performs actions only if no statefile is found on the node"
   `(actions/plan-when 
-     (nil? (node-get-nv-state ~dda-crate))
+     (= (node-get-nv-state ~dda-crate) [0 0 0])
      ~@crate-fns-or-actions))
 
 (defmacro plan-when-verlessthan [dda-crate version & crate-fns-or-actions]
