@@ -53,7 +53,6 @@
   (toString [_] (str "DdaCrate[facility=" (:facility _) 
                      " ver=" (:version _) "]")))
 
-; TODO: review jem 2016_06_28: Pleas leave signature as before. It's needed to have a fixed ensured signature for all dda- multifunctions.
 (s/defn dispatch-by-crate-facility :- s/Keyword
   "Dispatcher for phase multimethods by facility. Also does a 
    schema validation of arguments."
