@@ -56,7 +56,7 @@
 (s/defn dispatch-by-crate-facility :- s/Keyword
   "Dispatcher for phase multimethods by facility. Also does a 
    schema validation of arguments."
-  [dda-crate :- DdaCrate & _]
+  [dda-crate :- DdaCrate config]
   (:facility dda-crate))
 
 
