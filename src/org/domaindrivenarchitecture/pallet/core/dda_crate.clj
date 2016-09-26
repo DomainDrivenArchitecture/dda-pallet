@@ -155,6 +155,7 @@
       (dda-app-rollout dda-crate (merge-config dda-crate partial-effective-config))))
   
   DdaCratePalletSpecification
+  ;; TODO jem 2016_09_26: we are not creating server spec but some kind of phase plan here.
   (create-server-spec [dda-crate] 
     (api/server-spec
       :phases 
