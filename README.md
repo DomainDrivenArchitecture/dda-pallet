@@ -17,11 +17,11 @@ dda-pallet is compatible to the following versions
 
 ##More information
 * dda-pallet is a clojure based config management system build upon the great config management framework [pallet](https://github.com/pallet/pallet) build by to Hugo Duncan.
-* (Requirements & Architecture)[https://dda.gitbooks.io/domaindrivenarchitecture/content/en/80_config_management/index.html]
-* (Presentations from Hugo Duncan & antonia Batichelli)[http://lanyrd.com/2012/clojurewest-training/spdbh/], (and)[http://lanyrd.com/2012/clojurewest/spdcf/]
+* [Requirements & Architecture](https://dda.gitbooks.io/domaindrivenarchitecture/content/en/80_config_management/index.html)
+* [Presentations from Hugo Duncan & Anton Batichelli](http://lanyrd.com/2012/clojurewest-training/spdbh/], (and)[http://lanyrd.com/2012/clojurewest/spdcf/)
 
 ## Comparison Puppet vs. dda-pallet
-!(ComparisonSheet.png)[doc/PuppetVsDdaPallet.png]
+![ComparisonSheet Puppet vs. dda-pallet](doc/PuppetVsDdaPallet.png)
 
 # License
 Published under [apache2.0 license](LICENSE.md)
