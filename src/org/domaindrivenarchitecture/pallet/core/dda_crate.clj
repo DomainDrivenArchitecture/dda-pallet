@@ -150,7 +150,7 @@
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
-      (actions/as-action (logging/info (str dda-crate) ": configure phase."))
+      (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-configure dda-crate (merge-config dda-crate partial-effective-config))))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
