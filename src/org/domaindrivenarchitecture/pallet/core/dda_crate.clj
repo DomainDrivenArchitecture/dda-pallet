@@ -41,6 +41,8 @@
                  "Raw implementation of configure phase")
   (install-raw [dda-crate dda-pallet-runtime]
                "Raw implementation of install phase")
+  (test-raw [dda-crate dda-pallet-runtime]
+               "Raw implementation of install phase")
   (app-rollout-raw [dda-crate dda-pallet-runtime]
                    "Raw implementation of app-rollout phase"))
 
@@ -111,6 +113,16 @@
     (logging/info 
       (str dda-crate) ": doing nothing.")))
 
+(defmulti dda-test
+  "Multimethod for test phase of a DdaCrate."
+  dispatch-by-crate-facility)
+(s/defmethod dda-install :default 
+  [dda-crate  :- DdaCrate 
+   effective-configuration]
+  (actions/as-action
+    (logging/info 
+      (str dda-crate) ": doing nothing.")))
+
 (defmulti dda-app-rollout
   "Multimethod for app-rollout phase of a DdaCrate."
   dispatch-by-crate-facility)
@@ -148,6 +160,11 @@
         (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
       (dda-install dda-crate (merge-config dda-crate partial-effective-config))
       (vp/node-write-state dda-crate)))
+  (test-raw [dda-crate dda-pallet-runtime]
+    (let [partial-effective-config 
+          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+      (actions/as-action (logging/info (str dda-crate) ": configure phase."))
+      (dda-test dda-crate (merge-config dda-crate partial-effective-config))))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
@@ -163,6 +180,7 @@
        :init (api/plan-fn (init-raw dda-crate nil))
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
+       :test (api/plan-fn (test-raw dda-crate nil))
        :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))
        })))
 
