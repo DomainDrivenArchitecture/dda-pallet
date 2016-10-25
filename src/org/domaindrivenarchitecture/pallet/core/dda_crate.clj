@@ -116,7 +116,7 @@
 (defmulti dda-test
   "Multimethod for test phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-install :default 
+(s/defmethod dda-test :default 
   [dda-crate  :- DdaCrate 
    effective-configuration]
   (actions/as-action
@@ -150,7 +150,7 @@
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
-      (actions/as-action (logging/info (str dda-crate) ": configure phase."))
+      (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-configure dda-crate (merge-config dda-crate partial-effective-config))))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
