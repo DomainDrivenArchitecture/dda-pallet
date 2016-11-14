@@ -141,35 +141,35 @@
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": settings phase."))
       (vp/node-read-state dda-crate)
-      (dda-settings dda-crate (merge-config dda-crate partial-effective-config))))
+      (dda-settings dda-crate partial-effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": init phase."))
-      (dda-init dda-crate (merge-config dda-crate partial-effective-config))))
+      (dda-init dda-crate partial-effective-config)))
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
-      (dda-configure dda-crate (merge-config dda-crate partial-effective-config))))
+      (dda-configure dda-crate partial-effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (actions/as-action 
         (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
-      (dda-install dda-crate (merge-config dda-crate partial-effective-config))
+      (dda-install dda-crate partial-effective-config)
       (vp/node-write-state dda-crate)))
   (test-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
-      (dda-test dda-crate (merge-config dda-crate partial-effective-config))))
+      (dda-test dda-crate partial-effective-config)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
           (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": rollout phase."))
-      (dda-app-rollout dda-crate (merge-config dda-crate partial-effective-config))))
+      (dda-app-rollout dda-crate partial-effective-config)))
   
   DdaCratePalletSpecification
   ;; TODO jem 2016_09_26: we are not creating server spec but some kind of phase plan here.
