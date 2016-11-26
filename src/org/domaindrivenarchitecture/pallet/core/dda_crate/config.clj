@@ -23,21 +23,31 @@
 (defn get-global-config
   ""
   []
-  (-> (crate/get-settings :dda-config) 
-    :global-config)
-  )
+  (get-in (crate/get-settings :dda-config) [:global-config]))
 
-(defn get-nodespecific-config
-  ""
+(defn get-node-specific-config
+  "get the node spec. config"
   []
-    (-> (crate/get-settings :dda-config) 
-      :node-specific-config)
-  )
+    (get-in (crate/get-settings :dda-config) [:node-specific-config]))
 
-(defn get-nodespecific-additional-config
+(defn get-nodespecific-config []
+  (get-node-specific-config))
+
+(defn get-node-specific-additional-config
   ""
   [custom-facility]
-  (-> (get-nodespecific-config) 
-    :additional-config 
-    custom-facility)
-  )
+  (get-in (get-node-specific-config) [:additional-config custom-facility]))
+
+(defn get-nodespecific-additional-config
+  [custom-facility]
+  (get-node-specific-additional-config custom-facility))
+
+(defn get-group-specific-config
+  "get the group spec. configuration"
+  []
+  (get-in (crate/get-settings :dda-config) [:group-specific-config]))
+
+(defn get-group-specific-additional-config
+  ""
+  [custom-facility]
+  (get-in (get-group-specific-config) [:additional-config custom-facility]))

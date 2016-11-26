@@ -22,12 +22,15 @@
     ))
 
 (defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]  
-  (let [id (crate/target-id)
+  (let [node-id (crate/target-id)
+        group-name (crate/group-name)
         config (get-in dda-crate [:config-default])
-        node-specific-config (get-in config [:node-specific-config id])]
+        group-specific-config (get-in config [:group-specific-config group-name])
+        node-specific-config (get-in config [:node-specific-config node-id])]
     (crate/assoc-settings 
       (get-in dda-crate [:facility])    
       {:global-config config
+       :group-specific-config group-specific-config
        :node-specific-config node-specific-config})
     ))
 

@@ -133,28 +133,37 @@
     (logging/info 
       (str dda-crate) ": doing nothing.")))
 
+(defn get-additional-config
+  "get either the node- or the group-specific additional configuration."
+  [facility]
+  (let [node-spec (config/get-node-specific-additional-config facility)
+        group-spec (config/get-group-specific-additional-config facility)]
+    (if (some? node-spec) 
+      node-spec
+      group-spec)))
+
 
 (extend-type DdaCrate
   DdaCratePhasesSpecification
   (settings-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": settings phase."))
       (vp/node-read-state dda-crate)
       (dda-settings dda-crate partial-effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": init phase."))
       (dda-init dda-crate partial-effective-config)))
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-configure dda-crate partial-effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (actions/as-action 
         (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
@@ -162,12 +171,12 @@
       (vp/node-write-state dda-crate)))
   (test-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-test dda-crate partial-effective-config)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config 
-          (config/get-nodespecific-additional-config (get-in dda-crate [:facility]))]
+          (get-additional-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": rollout phase."))
       (dda-app-rollout dda-crate partial-effective-config)))
   
