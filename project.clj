@@ -1,4 +1,4 @@
-(defproject org.domaindrivenarchitecture/dda-pallet "0.2.1-SNAPSHOT"
+(defproject org.domaindrivenarchitecture/dda-pallet "0.3.0-SNAPSHOT"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :pallet {:source-paths ["src"]}
@@ -9,9 +9,9 @@
                  [prismatic/schema "1.1.3"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
-                 [ch.qos.logback/logback-classic "1.1.7"]
+                 [ch.qos.logback/logback-classic "1.1.8"]
                  [org.domaindrivenarchitecture/dda-config-commons "0.1.7"]
-                 [org.domaindrivenarchitecture/dda-pallet-commons "0.2.1"]]
+                 [org.domaindrivenarchitecture/dda-pallet-commons "0.3.0"]]
   :profiles {:dev
              {:dependencies
               [[org.clojure/test.check "0.9.0"]
@@ -19,7 +19,7 @@
               :plugins
               [[lein-sub "0.3.0"]]}
               :leiningen/reply
-               {:dependencies [[org.slf4j/jcl-over-slf4j "1.7.21"]]
+               {:dependencies [[org.slf4j/jcl-over-slf4j "1.7.22"]]
                 :exclusions [commons-logging]}}
   :local-repo-classpath true
   :repositories [["snapshots" :clojars]
