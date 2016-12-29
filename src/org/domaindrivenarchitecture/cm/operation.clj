@@ -18,48 +18,51 @@
     [schema.core :as s]
     [pallet.api :as api]))
 
+(defn login-user [group]
+  (-> group :image :login-user))
+
 (defn do-apply-configure
   "applies only the settings and configuration phase to a target.
-function awaits the login user set in (-> group :node-spec :image :login-user)."
+function awaits the login user set in (-> group :image :login-user)."
   ([provider group]
     (api/lift
       group
       :compute provider
       :phase '(:settings :configure)
-      :user (api/make-user (-> group :node-spec :image :login-user))))
+      :user (api/make-user (login-user group))))
     )
 
 (defn do-apply-install
     "applies the settings, init, install and configuration to a target.
-function awaits the login user set in (-> group :node-spec :image :login-user)."
+function awaits the login user set in (-> group :image :login-user)."
   ([provider group]
     (api/lift
       group
       :compute provider
       :phase '(:settings :init :install :configure)
-      :user (api/make-user (-> group :node-spec :image :login-user))))
+      :user (api/make-user (login-user group))))
     )
 
 (defn do-converge-install
     "Converges [count] nodes and applies the settings, init, install and configuration phase to a target.
-function awaits the login user set in (-> group :node-spec :image :login-user)."
+function awaits the login user set in (-> group :image :login-user)."
   ([provider group]
     (api/converge
       group
       :compute provider
       :phase '(:settings :init :install :configure)
-      :user (api/make-user (-> group :node-spec :image :login-user)))
+      :user (api/make-user (login-user group)))
     )
   )
 
 (defn do-vm-test
     "applies only the settings and test (without side effects by convention) phase of group to a target.
-function awaits the login user set in (-> group :node-spec :image :login-user)."
+function awaits the login user set in (-> group :image :login-user)."
   ([provider group]
     (api/lift
       group
       :compute provider
       :phase '(:settings :test)
-      :user (api/make-user (-> group :node-spec :image :login-user)))
+      :user (api/make-user (login-user group)))
     )
   )
