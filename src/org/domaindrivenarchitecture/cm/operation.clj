@@ -55,7 +55,7 @@ function awaits the login user set in (-> group :image :login-user)."
     )
   )
 
-(defn do-vm-test
+(defn do-server-test
     "applies only the settings and test (without side effects by convention) phase of group to a target.
 function awaits the login user set in (-> group :image :login-user)."
   ([provider group]
