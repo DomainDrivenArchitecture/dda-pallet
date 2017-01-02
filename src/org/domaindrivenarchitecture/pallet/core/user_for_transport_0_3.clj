@@ -16,7 +16,7 @@
 
 ;Deprercated
 
-(ns org.domaindrivenarchitecture.pallet.core.user-for-transport
+(ns org.domaindrivenarchitecture.pallet.core.user-for-transport-0-3
   (:require
     [pallet.api :as api]))
 

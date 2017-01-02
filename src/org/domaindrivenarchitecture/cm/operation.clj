@@ -18,8 +18,16 @@
     [schema.core :as s]
     [pallet.api :as api]))
 
-(defn login-user [group]
-  (-> group :image :login-user))
+(defn- provision-user [group]
+  (let [provision-user (-> group :image :login-user)]
+    (cond
+      (empty? provision-user) (api/make-user "pallet")
+      (string? provision-user) (api/make-user provision-user :no-sudo (= provision-user "root"))
+      (map? provision-user) (let [login (-> provision-user :login)
+                                  pwd (-> provision-user :password)] 
+                              (api/make-user login :password pwd :no-sudo (= login "root")))
+      )
+    ))
 
 (defn do-apply-configure
   "applies only the settings and configuration phase to a target.
@@ -29,18 +37,18 @@ function awaits the login user set in (-> group :image :login-user)."
       group
       :compute provider
       :phase '(:settings :configure)
-      :user (api/make-user (login-user group))))
+      :user (provision-user group)))
     )
 
 (defn do-apply-install
     "applies the settings, init, install and configuration to a target.
 function awaits the login user set in (-> group :image :login-user)."
-  ([provider group]
+    [provider group]
     (api/lift
       group
       :compute provider
       :phase '(:settings :init :install :configure)
-      :user (api/make-user (login-user group))))
+      :user (provision-user group))
     )
 
 (defn do-converge-install
@@ -51,7 +59,7 @@ function awaits the login user set in (-> group :image :login-user)."
       group
       :compute provider
       :phase '(:settings :init :install :configure)
-      :user (api/make-user (login-user group)))
+      :user (provision-user group))
     )
   )
 
@@ -63,6 +71,6 @@ function awaits the login user set in (-> group :image :login-user)."
       group
       :compute provider
       :phase '(:settings :test)
-      :user (api/make-user (login-user group)))
+      :user (provision-user group))
     )
   )
