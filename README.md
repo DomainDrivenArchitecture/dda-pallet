@@ -6,7 +6,7 @@ dda-pallet provides the whole tool-chain from one hand, is real modular, testabl
 dda-pallet is compatible to the following versions
  * pallet 0.8
  * clojure 1.7
- * (x)ubunutu14.04
+ * (x)ubunutu14.04 / 16.04
 
 ## Principles
  * Distinction between installation and configuration: We distinguish between seldom installation and continuous configuration.
