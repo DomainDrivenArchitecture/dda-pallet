@@ -3,8 +3,7 @@
 ; distributed with this work for additional information
 ; regarding copyright ownership. The ASF licenses this file
 ; to you under the Apache License, Version 2.0 (the
-; "License"); you may not use this file except in compliance
-; with the License. You may obtain a copy of the License at
+                                        ; "License"); you may not use this file except in compliance; with the License. You may obtain a copy of the License at
 ;
 ; http://www.apache.org/licenses/LICENSE-2.0
 ;
@@ -20,20 +19,20 @@
    (:gen-class :main true))
 
 (defrecord Node
-  [host-name 
-   domain-name 
-   pallet-cm-user-name 
-   pallet-cm-user-password 
+  [host-name
+   domain-name
+   pallet-cm-user-name
+   pallet-cm-user-password
    additional-config])
 
 (defn new-node
   ""
-  [& {:keys [host-name 
-             domain-name 
-             pallet-cm-user-name 
-             pallet-cm-user-password 
+  [& {:keys [host-name
+             domain-name
+             pallet-cm-user-name
+             pallet-cm-user-password
              additional-config]
-      :or {pallet-cm-user-password nil 
+      :or {pallet-cm-user-password nil
            additional-config nil}}]
     (Node. host-name domain-name pallet-cm-user-name pallet-cm-user-password additional-config)
   )

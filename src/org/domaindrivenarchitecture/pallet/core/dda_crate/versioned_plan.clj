@@ -15,60 +15,65 @@
 ; limitations under the License.
 
 (ns org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan
-  (:require 
+  (:require
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.core.session :as session]
     [pallet.crate :as crate]
     [pallet.node-value :as nv]
     [pallet.stevedore :as stevedore]
-    [org.domaindrivenarchitecture.config.commons.version-model :as version-model]
-    ))
+    [org.domaindrivenarchitecture.config.commons.version-model :as version-model]))
+
+(def install-marker-dir
+  "/var/lib/pallet/state/")
 
 (defmacro plan-when-cleaninstall [dda-crate & crate-fns-or-actions]
   "Performs actions only if no statefile is found on the node"
-  `(actions/plan-when 
+  `(actions/plan-when
      (= (node-get-nv-state ~dda-crate) [0 0 0])
      ~@crate-fns-or-actions))
 
 (defmacro plan-when-verlessthan [dda-crate version & crate-fns-or-actions]
   "Performs actions only if node version is less than given version"
-  `(actions/plan-when 
+  `(actions/plan-when
      (version-model/ver_less (node-get-nv-state ~dda-crate) ~version)
      ~@crate-fns-or-actions))
 
-
 (defn install-marker-path [dda-crate]
   "Gets the path of state marker."
-  (str "/home/pallet/state/" (name (:facility dda-crate))))
+  (str install-marker-dir (name (:facility dda-crate))))
 
 (defn node-write-state [dda-crate]
   "Creates an actions that writes a state file to the node."
-   (actions/remote-file
-      (install-marker-path dda-crate) 
-      :overwrite-changes true
-      :literal true
-      :content (version-model/ver_str (:version dda-crate))))
+  (actions/plan-when-not
+    (stevedore/script (directory? ~install-marker-dir))
+    (actions/directory install-marker-dir))
+  (actions/remote-file
+    (install-marker-path dda-crate)
+    :overwrite-changes true
+    :literal true
+    :content (version-model/ver_str (:version dda-crate))))
 
 (defn node-get-nv-state [dda-crate]
-  "Read the node version as node-value from settings after it was set by 
+  "Read the node version as node-value from settings after it was set by
    node-read-state."
-  (-> dda-crate :facility crate/get-settings :node-version version-model/ver_fromstr))
+  (-> dda-crate :facility crate/get-settings
+      :node-version version-model/ver_fromstr))
 
 (defn node-read-state [dda-crate]
   "Read the remote statefile of an app and returns the content as a nodevalue."
   (let [statefile (install-marker-path dda-crate)]
-	  ; set version to `nil`, if no state file exists
-	  (actions/plan-when-not
-	    (stevedore/script (file-exists? ~statefile))
-      (actions/assoc-settings (:facility dda-crate) {:node-version nil})
-	    )
-	  ; set version according to state file, if file exists
-	  (actions/plan-when
-	    (stevedore/script (file-exists? ~statefile))
-      (actions/assoc-settings 
-        (:facility dda-crate) 
-        {:node-version (actions/remote-file-content statefile)})
-      )))
+    ; set version to `nil`, if no state file exists
+    (actions/plan-when-not
+      (stevedore/script (file-exists? ~statefile))
+      (actions/assoc-settings (:facility dda-crate) {:node-version nil}))
+
+    ; set version according to state file, if file exists
+    (actions/plan-when
+      (stevedore/script (file-exists? ~statefile))
+      (actions/assoc-settings
+        (:facility dda-crate)
+        {:node-version (actions/remote-file-content statefile)}))))
+
 
 (ns-name *ns*)

@@ -15,7 +15,7 @@
 ; limitations under the License.
 
 (ns org.domaindrivenarchitecture.pallet.core.dda-crate
-  (:require 
+  (:require
     [schema.core :as s]
     [pallet.actions :as actions]
     [pallet.api :as api]
@@ -27,13 +27,13 @@
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"
-  (create-server-spec [dda-crate] 
-    "Creates a pallet server-spec from the dda-crate")
-  )
+  (create-server-spec [dda-crate]
+    "Creates a pallet server-spec from the dda-crate"))
+
 
 (defprotocol DdaCratePhasesSpecification
   "Protocol for pallet-related crate functions"
-  (settings-raw [dda-crate dda-pallet-runtime] 
+  (settings-raw [dda-crate dda-pallet-runtime]
                 "Raw implementation of settings phase")
   (init-raw [dda-crate dda-pallet-runtime]
             "Raw implementation of configure init")
@@ -42,27 +42,27 @@
   (install-raw [dda-crate dda-pallet-runtime]
                "Raw implementation of install phase")
   (test-raw [dda-crate dda-pallet-runtime]
-               "Raw implementation of install phase")
+            "Raw implementation of install phase")
   (app-rollout-raw [dda-crate dda-pallet-runtime]
                    "Raw implementation of app-rollout phase"))
 
-(s/defrecord DdaCrate 
+(s/defrecord DdaCrate
   [facility :- s/Keyword
    version :- version-model/Version
    config-default :- {s/Keyword s/Any}
    config-schema :- {s/Any s/Any}]
   Object
-  (toString [_] (str "DdaCrate[facility=" (:facility _) 
+  (toString [_] (str "DdaCrate[facility=" (:facility _)
                      " ver=" (:version _) "]")))
 
 (s/defn dispatch-by-crate-facility :- s/Keyword
-  "Dispatcher for phase multimethods by facility. Also does a 
+  "Dispatcher for phase multimethods by facility. Also does a
    schema validation of arguments."
   [dda-crate :- DdaCrate config]
   (:facility dda-crate))
 
 
-(defmulti merge-config 
+(defmulti merge-config
   "Merges configuration with the crates default configuration"
   dispatch-by-crate-facility)
 (s/defmethod merge-config :default
@@ -76,129 +76,130 @@
 (defmulti dda-settings
   "Multimethod for settings phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-settings :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-settings :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-init
   "Multimethod for init phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-init :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-init :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-configure
   "Multimethod for configure phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-configure :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-configure :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-install
   "Multimethod for install phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-install :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-install :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-test
   "Multimethod for test phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-test :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-test :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
 (defmulti dda-app-rollout
   "Multimethod for app-rollout phase of a DdaCrate."
   dispatch-by-crate-facility)
-(s/defmethod dda-app-rollout :default 
-  [dda-crate  :- DdaCrate 
+(s/defmethod dda-app-rollout :default
+  [dda-crate  :- DdaCrate
    effective-configuration]
   (actions/as-action
-    (logging/info 
+    (logging/info
       (str dda-crate) ": doing nothing.")))
 
-(defn get-additional-config
+(defn get-config
   "get either the node- or the group-specific additional configuration."
   [facility]
-  (let [node-spec (config/get-node-specific-additional-config facility)
-        group-spec (config/get-group-specific-additional-config facility)]
-    (if (some? node-spec) 
-      node-spec
-      group-spec)))
-
+  (let [node-add-config (config/get-node-specific-additional-config facility)
+        group-add-config (config/get-group-specific-additional-config facility)
+        group-config (facility  (config/get-group-specific-config))]
+    (cond
+      (some? node-add-config) node-add-config
+      (some? group-add-config) group-add-config
+      :default group-config)))
 
 (extend-type DdaCrate
   DdaCratePhasesSpecification
   (settings-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": settings phase."))
       (vp/node-read-state dda-crate)
       (dda-settings dda-crate partial-effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": init phase."))
       (dda-init dda-crate partial-effective-config)))
   (configure-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-configure dda-crate partial-effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
-      (actions/as-action 
+      (actions/as-action
         (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
       (dda-install dda-crate partial-effective-config)
       (vp/node-write-state dda-crate)))
   (test-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": test phase."))
       (dda-test dda-crate partial-effective-config)))
   (app-rollout-raw [dda-crate dda-pallet-runtime]
-    (let [partial-effective-config 
-          (get-additional-config (get-in dda-crate [:facility]))]
+    (let [partial-effective-config
+          (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": rollout phase."))
       (dda-app-rollout dda-crate partial-effective-config)))
-  
+
   DdaCratePalletSpecification
-  ;; TODO jem 2016_09_26: we are not creating server spec but some kind of phase plan here.
-  (create-server-spec [dda-crate] 
+  ;; TODO jem 2016_09_26: we are not creating server spec but some kind of phase plan here. rename!
+  (create-server-spec [dda-crate]
     (api/server-spec
-      :phases 
+      :phases
       {:settings (api/plan-fn (settings-raw dda-crate nil))
        :init (api/plan-fn (init-raw dda-crate nil))
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
        :test (api/plan-fn (test-raw dda-crate nil))
-       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))
-       })))
+       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))})))
+
 
 (defn make-dda-crate
   "Creates a DdaCrate. (Wrapper for ->DdaCrate with validation.)"
   [& {:keys [facility version config-default config-schema]
-      :or {config-default {} 
-           config-schema {s/Any s/Any}}
-      }]
+      :or {config-default {}
+           config-schema {s/Any s/Any}}}]
+
   (s/validate
     DdaCrate
     (->DdaCrate facility version config-default config-schema)))

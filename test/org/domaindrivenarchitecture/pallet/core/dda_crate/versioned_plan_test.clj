@@ -22,7 +22,5 @@
 
 (deftest install-marker
   (testing "path of install-marker"
-    (is (= "/home/pallet/state/mycrate" 
-           (sut/install-marker-path {:facility :mycrate})))
-    )
-  )
+    (is (= "/var/lib/pallet/state/mycrate" 
+           (sut/install-marker-path {:facility :mycrate})))))

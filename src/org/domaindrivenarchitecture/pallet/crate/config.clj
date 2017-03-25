@@ -21,14 +21,14 @@
     [org.domaindrivenarchitecture.pallet.core.dda-crate :as dda-crate]
     ))
 
-(defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]  
+(defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]
   (let [node-id (crate/target-id)
         group-name (crate/group-name)
         config (get-in dda-crate [:config-default])
         group-specific-config (get-in config [:group-specific-config group-name])
         node-specific-config (get-in config [:node-specific-config node-id])]
-    (crate/assoc-settings 
-      (get-in dda-crate [:facility])    
+    (crate/assoc-settings
+      (get-in dda-crate [:facility])
       {:global-config config
        :group-specific-config group-specific-config
        :node-specific-config node-specific-config})
@@ -37,9 +37,9 @@
 (defn with-config
   ""
   [config]
-  (let 
+  (let
     [config-crate (dda-crate/make-dda-crate
-                    :facility :dda-config 
+                    :facility :dda-config
                     :version [1 4 0]
                     :config-default config)]
     (dda-crate/create-server-spec config-crate)
