@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.core.dda-crate
+(ns dda.pallet.core.dda-crate
   (:require
     [schema.core :as s]
     [pallet.actions :as actions]
@@ -22,8 +22,7 @@
     [clojure.tools.logging :as logging]
     [org.domaindrivenarchitecture.config.commons.map-utils :as map-utils]
     [org.domaindrivenarchitecture.config.commons.version-model :as version-model]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.config :as config]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :as vp]))
+    [dda.pallet.core.dda-crate.config :as config]))
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"
@@ -150,7 +149,6 @@
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": settings phase."))
-      (vp/node-read-state dda-crate)
       (dda-settings dda-crate partial-effective-config)))
   (init-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
@@ -166,10 +164,7 @@
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
-      (actions/as-action
-        (logging/info "Installed version is: " (vp/node-get-nv-state dda-crate)))
-      (dda-install dda-crate partial-effective-config)
-      (vp/node-write-state dda-crate)))
+      (dda-install dda-crate partial-effective-config)))
   (test-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
@@ -191,7 +186,8 @@
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
        :test (api/plan-fn (test-raw dda-crate nil))
-       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))})))
+       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))}))
+  )
 
 
 (defn make-dda-crate

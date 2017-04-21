@@ -14,11 +14,11 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.core.dda-crate-test
+(ns dda.pallet.core.dda-crate-test
   (:require
     [clojure.test :refer :all]
     [schema.core :as s]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate :as sut]))
+    [dda.pallet.core.dda-crate :as sut]))
 
 (deftest make-dda-crate-test
   (testing "crate instantiation"

@@ -13,7 +13,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.crate.config.node
+(ns dda.pallet.crate.config.node
   (:require
     [pallet.api :as api])
    (:gen-class :main true))

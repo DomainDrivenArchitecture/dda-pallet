@@ -14,11 +14,11 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.crate.config
+(ns dda.pallet.crate.config
   (:require
     [pallet.api :as api]
     [pallet.crate :as crate]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate :as dda-crate]
+    [dda.pallet.core.dda-crate :as dda-crate]
     ))
 
 (defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]

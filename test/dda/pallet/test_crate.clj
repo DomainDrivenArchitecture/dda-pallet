@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.pallet.test-crate
+(ns dda.pallet.test-crate
   (:require 
     [pallet.actions :as actions]
     [pallet.api]
@@ -25,9 +25,8 @@
     [pallet.node-value :as nv]
     [pallet.repl]
     [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate :refer :all]
-    [org.domaindrivenarchitecture.config.commons.version-model :refer :all]
-    [org.domaindrivenarchitecture.pallet.core.dda-crate.versioned-plan :refer :all]))
+    [dda.pallet.core.dda-crate :refer :all]
+    [org.domaindrivenarchitecture.config.commons.version-model :refer :all]))
 
 (schema.core/set-fn-validation! true)
 
@@ -35,15 +34,6 @@
   (make-dda-crate
     :facility :testcrate 
     :version [1 3 0]))
-
-(defmethod dda-install :testcrate [dda-crate config]  
-  (plan-when-cleaninstall dda-crate
-    (pallet.actions/as-action (clojure.tools.logging/info "Oh, it's clean install!")))
-  (plan-when-verlessthan dda-crate [1 2]
-    (pallet.actions/as-action (clojure.tools.logging/info "Oh, it's less than [1 2]")))
-  (plan-when-verlessthan dda-crate [1 3]
-    (pallet.actions/as-action (clojure.tools.logging/info "Oh, it's less than [1 3]")))
-  )
 
 (def with-test (create-server-spec TestCrate))
 

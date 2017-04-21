@@ -14,36 +14,13 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-;Deprercated
-
-(ns org.domaindrivenarchitecture.pallet.core.user-for-transport-0-3
+(ns dda.pallet.core.dda-crate.versioned-plan-test
   (:require
-    [pallet.api :as api]))
+    [clojure.test :refer :all]
+    [schema.core :as s]
+    [dda.pallet.core.dda-crate.versioned-plan :as sut]))
 
-(defn get-cm-user
-  ([node]
-  (let [user-name (:pallet-cm-user-name node)
-        user-pwd (:pallet-cm-user-password node)]
-    (get-cm-user user-name user-pwd)
-    ))
-  ([user-name user-pwd]
-    (if (nil? user-pwd)
-      (api/make-user user-name)
-      (api/make-user 
-        user-name 
-        :password user-pwd 
-        :no-sudo (= user-name "root")))
-    )  
-  )
-
-(defn password-user-for-cm
-  "create the user to bootstrap the system"
-  [user-name user-password]
-  (api/make-user user-name :password user-password :no-sudo (= user-name "root"))
-  )
-
-(defn pallet-user-for-cm
-  "create the user for regular further configuration"
-  []
-  (api/make-user "pallet")
-  )
+(deftest install-marker
+  (testing "path of install-marker"
+    (is (= "/var/lib/pallet/state/mycrate" 
+           (sut/install-marker-path {:facility :mycrate})))))

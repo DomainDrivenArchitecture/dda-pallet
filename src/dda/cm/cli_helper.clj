@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns org.domaindrivenarchitecture.cm.cli-helper
+(ns dda.cm.cli-helper
   (:require
     [clojure.tools.cli :as cli]
     [clojure.string :as string]
