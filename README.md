@@ -25,7 +25,7 @@ dda-pallet is compatible to the following versions
 
 ## TechDebt Roadmap
 
-Find closer description to the DesignDecisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/b39dabf6819d5b82c39a038fdd6c0dca3bed1410/en/80_devops/40_architecture/Decisions.html
+Find closer description to the DesignDecisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/027ddde7df59bc3a6ccabc97b23e401462fafb6a/en/80_devops/40_architecture/Decisions.html
 
 | | Version |Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Crate & Domain Boundaries | Input / Output Spec | Short Package | Composition over API | Group base Configuration |
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- |
