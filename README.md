@@ -27,9 +27,9 @@ dda-pallet is compatible to the following versions
 
 Find closer description to the DesignDecisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/027ddde7df59bc3a6ccabc97b23e401462fafb6a/en/80_devops/40_architecture/Decisions.html
 
-| | Version |Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Crate & Domain Boundaries | Input / Output Spec | Short Package | Composition over API | Group base Configuration |
+| | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration |
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- |
-| dda-backup-crate |  |  |  |  | |  |  |  | ||
+| dda-backup-crate | 0.4.2-SNAPSHOT |  |  |  | | x |  |  | ||
 | dda-basic-crate |  |  |  |  | |  |  |  | ||
 | dda-collected-crate|  |  |  |  | |  |  |  || |
 | dda-config-commons|  |  |  |  | |  |  |  | ||
@@ -41,7 +41,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-iptables-crate|  |  |  |  | |  |  |  || |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||
 | dda-linkeddata-crate|  |  |  |  | |  |  |  || |
-| dda-managed-ide|  |  |  |  | |  |  |  | ||
+| dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x ||
 | dda-managed-vm|  |  |  |  | |  |  |  | ||
 | dda-mysql-crate|  |  |  |  | |  |  |  | ||
 | dda-pallet           | 0.4.0-SNAPSHOT |  |  |  |  |  | x |  |  |  |
@@ -49,7 +49,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-pallet-masterbuild|  |  |  |  | | | |  |  | |
 | dda-provider-crate|  |  |  |  | |  |  ||  | |
 | dda-servertest-crate|  |  |  |  | |  |  ||  | |
-| dda-tomcat-crate|  |  |  |  | |  |  |  | ||
+| dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||
 
 # License
 Published under [apache2.0 license](LICENSE.md)
