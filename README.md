@@ -31,24 +31,23 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- |
 | dda-backup-crate | 0.4.2-SNAPSHOT |  |  |  | | x |  |  | ||
 | dda-basic-crate |  |  |  |  | |  |  |  | ||
-| dda-collected-crate|  |  |  |  | |  |  |  || |
-| dda-config-commons|  |  |  |  | |  |  |  | ||
-| dda-config-crate|  |  |  |  | |  |  |  | ||
-| dda-git-crate        | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x |
+| dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |
+| dda-config-commons| 0.1.8-SNAPSHOT | n.a. | n.a. | n.a. | x |  |  |  | n.a | n.a |
+| dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |
+| dda-git-crate   | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x |
 | dda-hardening-crate|  |  |  |  | |  |  |  | |
 | dda-httpd-crate|  |  |  |  | |  |  |  | ||
 | dda-init-crate|  |  |  |  | |  |  |  | ||
 | dda-iptables-crate|  |  |  |  | |  |  |  || |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||
 | dda-linkeddata-crate|  |  |  |  | |  |  |  || |
-| dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x ||
-| dda-managed-vm|  |  |  |  | |  |  |  | ||
+| dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |
+| dda-managed-vm| 0.2.2-SNAPSHOT | x | x |  |  | x | x | x | partial | x |
 | dda-mysql-crate|  |  |  |  | |  |  |  | ||
 | dda-pallet           | 0.4.0-SNAPSHOT |  |  |  |  |  | x |  |  |  |
-| dda-pallet-commons|  |  |  |  | |  | | |  | |
-| dda-pallet-masterbuild|  |  |  |  | | | |  |  | |
+| dda-pallet-commons| n.a. | n.a. | n.a |  |  |  |  |  |  | n.a. |
 | dda-provider-crate|  |  |  |  | |  |  ||  | |
-| dda-servertest-crate|  |  |  |  | |  |  ||  | |
+| dda-servertest-crate| 0.2.0-SNAPSHOT |  | x |  |  |  |  | x |  |  |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||
 
 # License
