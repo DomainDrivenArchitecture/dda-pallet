@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns meissa.pallet.crate.meissa-managed-vm.existing
+(ns dda.cm.existing
   (:require
     [pallet.compute.node-list :as node-list]
     [pallet.compute :as compute]))
