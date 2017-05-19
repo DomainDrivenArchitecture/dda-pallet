@@ -35,7 +35,7 @@
      [aws-encrypted-credentials (get-in (pallet.configure/pallet-config) [:services :aws])
       aws-decrypted-credentials (crypto/decrypt
                                   (crypto/get-secret-key
-                                    {:user-home "~/"
+                                    {:user-home (str (System/getenv "HOME") "/")
                                      :key-id key-id})
                                   aws-encrypted-credentials
                                   key-passphrase)]
