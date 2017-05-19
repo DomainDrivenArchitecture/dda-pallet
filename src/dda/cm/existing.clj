@@ -16,19 +16,37 @@
 
 (ns dda.cm.existing
   (:require
-    [pallet.compute.node-list :as node-list]
-    [pallet.compute :as compute]))
+   [schema.core :as s]
+   [pallet.compute.node-list :as node-list]
+   [pallet.compute :as compute]))
 
-(defn remote-node [provisioning-ip node-id group-name]
-  (node-list/make-node
-    node-id
-    group-name
-    :ubuntu))
+(def ExistingNode
+ {:node-name s/Str
+  :node-ip s/Str})
 
-(defn provider [provisioning-ip]
+(def ExistingNodes
+  {:s/Keyword ExistingNode})
+
+(s/defn ^:always-validate remote-node
+  ([node-ip node-name group-name]
+   (node-list/make-node
+     node-name
+     group-name
+     node-ip
+     :ubuntu))
+  ([group :- s/Keyword
+    existing-node :- ExistingNode]
+   (let [{:keys [node-name node-ip]} existing-node]
+    (node-list/make-node
+      node-name
+      (name group)
+      node-ip
+      :ubuntu))))
+
+(defn provider [provisioning-ip node-id group-name]
   (compute/instantiate-provider
     "node-list"
-    :node-list [(remote-node provisioning-ip)]))
+    :node-list [(remote-node provisioning-ip node-id group-name)]))
 
 (defn node-spec [provisioning-user]
   {:image
