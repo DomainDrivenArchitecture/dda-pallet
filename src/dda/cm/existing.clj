@@ -19,11 +19,10 @@
     [pallet.compute.node-list :as node-list]
     [pallet.compute :as compute]))
 
-(defn remote-node [provisioning-ip]
+(defn remote-node [provisioning-ip node-id group-name]
   (node-list/make-node
-    "meissa-managed-vm-integration"
-    "meissa-managed-vm-group"
-    provisioning-ip
+    node-id
+    group-name
     :ubuntu))
 
 (defn provider [provisioning-ip]
