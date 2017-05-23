@@ -17,11 +17,10 @@ dda-pallet is compatible to the following versions
 
 ##More information
 * dda-pallet is a clojure based config management system build upon the great config management framework [pallet](https://github.com/pallet/pallet) build by to Hugo Duncan.
+* Website & Blog: [DomanDrivenArchitecture.org](https://domaindrivenarchitecture.org)
+* Commercial: [meissa-gmbh.de](https://meissa-gmbh.de)
+* Slack-Channel: [dda-pallet@clojurians.slack.com](https://clojurians.slack.com/messages/C5GDWDF28/)
 * [Requirements & Architecture](https://dda.gitbooks.io/domaindrivenarchitecture/content/en/80_config_management/index.html)
-* Presentations from Hugo Duncan & Anton Batichelli: [training](http://lanyrd.com/2012/clojurewest-training/spdbh/), and [presentation](http://lanyrd.com/2012/clojurewest/spdcf/)
-
-## Comparison Puppet vs. dda-pallet
-![ComparisonSheet Puppet vs. dda-pallet](doc/PuppetVsDdaPallet.png)
 
 ## TechDebt Roadmap
 
@@ -47,7 +46,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-pallet           | 0.4.0-SNAPSHOT |  |  |  |  |  | x |  |  |  | n.a. |
 | dda-pallet-commons| n.a. | n.a. | n.a |  |  |  |  |  |  | n.a. |  |
 | dda-provider-crate|  |  |  |  | |  |  ||  | |  |
-| dda-servertest-crate| 0.2.0-SNAPSHOT |  | x |  |  |  |  | x |  |  |  |
+| dda-servertest-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |
 
 # License
