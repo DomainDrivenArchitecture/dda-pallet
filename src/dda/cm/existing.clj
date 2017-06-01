@@ -43,10 +43,20 @@
       node-ip
       :ubuntu))))
 
-(defn provider [provisioning-ip node-id group-name]
-  (compute/instantiate-provider
-    "node-list"
-    :node-list [(remote-node provisioning-ip node-id group-name)]))
+(s/defn provider
+  ([provisioning-ip :- s/Str
+    node-id :- s/Str
+    group-name  :- s/Str]
+   (compute/instantiate-provider
+     "node-list"
+     :node-list [(remote-node provisioning-ip node-id group-name)]))
+  ([existing-nodes :- ExistingNodes]
+   (compute/instantiate-provider
+      "node-list"
+      :node-list
+      (into
+        []
+        (map (fn [[k v]] (remote-node k v)) existing-nodes)))))
 
 (defn node-spec [provisioning-user]
   {:image
