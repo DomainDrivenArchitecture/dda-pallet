@@ -16,13 +16,13 @@
 
 (ns dda.pallet.core.dda-crate.versioned-plan
   (:require
-    [schema.core :as s]
-    [pallet.actions :as actions]
-    [pallet.core.session :as session]
-    [pallet.crate :as crate]
-    [pallet.node-value :as nv]
-    [pallet.stevedore :as stevedore]
-    [org.domaindrivenarchitecture.config.commons.version-model :as version-model]))
+   [schema.core :as s]
+   [pallet.actions :as actions]
+   [pallet.core.session :as session]
+   [pallet.crate :as crate]
+   [pallet.node-value :as nv]
+   [pallet.stevedore :as stevedore]
+   [dda.config.commons.version-model :as version-model]))
 
 (def install-marker-dir
   "/var/lib/pallet/state/")

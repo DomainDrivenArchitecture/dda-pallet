@@ -16,13 +16,13 @@
 
 (ns dda.pallet.core.dda-crate
   (:require
-    [schema.core :as s]
-    [pallet.actions :as actions]
-    [pallet.api :as api]
-    [clojure.tools.logging :as logging]
-    [org.domaindrivenarchitecture.config.commons.map-utils :as map-utils]
-    [org.domaindrivenarchitecture.config.commons.version-model :as version-model]
-    [dda.pallet.core.dda-crate.config :as config]))
+   [schema.core :as s]
+   [pallet.actions :as actions]
+   [pallet.api :as api]
+   [clojure.tools.logging :as logging]
+   [dda.config.commons.map-utils :as map-utils]
+   [dda.config.commons.version-model :as version-model]
+   [dda.pallet.core.dda-crate.config :as config]))
 
 (defprotocol DdaCratePalletSpecification
   "Protocol for pallet-related crate functions"

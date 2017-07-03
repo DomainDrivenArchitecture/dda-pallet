@@ -16,17 +16,17 @@
 
 (ns dda.pallet.test-crate
   (:require 
-    [pallet.actions :as actions]
-    [pallet.api]
-    [pallet.compute]
-    [pallet.compute.node-list]
-    [pallet.crate :as crate]
-    [pallet.core.session :as session]
-    [pallet.node-value :as nv]
-    [pallet.repl]
-    [clojure.tools.logging :as logging]
-    [dda.pallet.core.dda-crate :refer :all]
-    [org.domaindrivenarchitecture.config.commons.version-model :refer :all]))
+   [pallet.actions :as actions]
+   [pallet.api]
+   [pallet.compute]
+   [pallet.compute.node-list]
+   [pallet.crate :as crate]
+   [pallet.core.session :as session]
+   [pallet.node-value :as nv]
+   [pallet.repl]
+   [clojure.tools.logging :as logging]
+   [dda.pallet.core.dda-crate :refer :all]
+   [dda.config.commons.version-model :refer :all]))
 
 (schema.core/set-fn-validation! true)
 
@@ -51,8 +51,8 @@
 
 (pallet.repl/explain-session 
     (pallet.api/lift
-           mygroup
-           :user (pallet.api/make-user "pallet")
-           :compute node-list
-           :phase '(:settings :install))
-    :show-detail false)
+        mygroup
+      :user (pallet.api/make-user "pallet")
+      :compute node-list
+      :phase '(:settings :install))
+  :show-detail false)
