@@ -13,10 +13,10 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.crate.config.node
+(ns dda.pallet.dda-config-crate.infra.node
   (:require
     [pallet.api :as api])
-   (:gen-class :main true))
+  (:gen-class :main true))
 
 (defrecord Node
   [host-name
@@ -34,5 +34,4 @@
              additional-config]
       :or {pallet-cm-user-password nil
            additional-config nil}}]
-    (Node. host-name domain-name pallet-cm-user-name pallet-cm-user-password additional-config)
-  )
+  (Node. host-name domain-name pallet-cm-user-name pallet-cm-user-password additional-config))

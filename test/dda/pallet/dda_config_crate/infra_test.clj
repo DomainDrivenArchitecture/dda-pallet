@@ -14,13 +14,13 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.crate.config-test
+(ns dda.pallet.dda-config-crate.infra-test
   (:require
     [clojure.test :refer :all]    
     [clojure.set :as cloj-set]
     [schema.core :as s]
     [schema.experimental.complete :as c]
-    [dda.pallet.crate.config :as sut]
+    [dda.pallet.dda-config-crate.infra :as sut]
     ))
 
 (deftest server-spec

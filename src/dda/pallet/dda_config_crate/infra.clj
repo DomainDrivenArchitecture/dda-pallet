@@ -14,12 +14,12 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.crate.config
+(ns dda.pallet.dda-config-crate.infra
   (:require
     [pallet.api :as api]
     [pallet.crate :as crate]
-    [dda.pallet.core.dda-crate :as dda-crate]
-    ))
+    [dda.pallet.core.dda-crate :as dda-crate]))
+
 
 (defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]
   (let [node-id (crate/target-id)
@@ -31,8 +31,8 @@
       (get-in dda-crate [:facility])
       {:global-config config
        :group-specific-config group-specific-config
-       :node-specific-config node-specific-config})
-    ))
+       :node-specific-config node-specific-config})))
+
 
 (defn with-config
   ""
@@ -42,5 +42,4 @@
                     :facility :dda-config
                     :version [1 4 0]
                     :config-default config)]
-    (dda-crate/create-server-spec config-crate)
-    ))
+    (dda-crate/create-server-spec config-crate)))

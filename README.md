@@ -29,15 +29,11 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout |
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dda-backup-crate | 0.4.2-SNAPSHOT |  |  |  | | x |  |  | |  |  |  |  |
-| dda-basic-crate |  |  |  |  | |  |  |  | ||  |  |  |
-| dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |  |  |  |
 | dda-config-commons| 0.2.0-SNAPSHOT | n.a. | n.a. | n.a. | n.a. |  |  | x | n.a | n.a | n.a. | n.a. | n.a. |
-| dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |  |  |  |
-| dda-git-crate   | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x |  |  |  |
+| dda-git-crate   | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  |  |
 | dda-httpd-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x |
 | dda-init-crate|  |  |  |  | |  |  |  | ||  |  |  |
-| dda-iptables-crate| deprecated |  |  |  |  |  |  | x |  |  |  |  |  |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||  |  |  |
 | dda-linkeddata-crate|  |  |  |  | |  |  |  || |  |  |  |
 | dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |
@@ -49,6 +45,10 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-servertest-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  |  |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |  |  |
 | dda-user-crate| 0.4.0-SNAPSHOT | X | X | n.a | X | X | X | X | X | X | X |  |  |
+| dda-basic-crate | deprecated |  |  |  | |  |  |  | ||  |  |  |
+| dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |  |  |  |
+| dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |  |  |  |
+| dda-iptables-crate| deprecated |  |  |  |  |  |  | x |  |  |  |  |  |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
