@@ -33,9 +33,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-git-crate   | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  |  |
 | dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x |
-| dda-init-crate|  |  |  |  | |  |  |  | ||  |  |  |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||  |  |  |
-| dda-linkeddata-crate|  |  |  |  | |  |  |  || |  |  |  |
 | dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |
 | dda-managed-vm| 0.2.2-SNAPSHOT | x | x |  |  | x | x | x | partial | x |  |  |  |
 | dda-mysql-crate|  |  |  |  | |  |  |  | ||  |  |  |
@@ -45,6 +43,8 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-servertest-crate| 0.2.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |  |  |
 | dda-user-crate| 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x |
+| dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |
+| dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |
 | dda-basic-crate | deprecated |  |  |  | |  |  |  | ||  |  |  |
 | dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |  |  |  |
