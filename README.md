@@ -1,5 +1,6 @@
 # dda-pallet
 [![Clojars Project](https://img.shields.io/clojars/v/dda/dda-pallet.svg)](https://clojars.org/dda/dda-pallet)
+[![Build Status](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet.svg?branch=master)](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet)
 
 Anyone who has so far dealt with Infrastructure as Code has to deal with a mix of Ruby, Python and go. If you want to get more from the Java world and always wanted to try functional programming, there is now a worthy & fresh alternative: "dda-pallet". Dda-pallet is OpenSource, written in clojure, running on the proven Java Virtual Machine.
 dda-pallet provides the whole tool-chain from one hand, is real modular, testable and well prepared for configuration data handling.
@@ -32,7 +33,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dda-backup-crate | 0.4.2-SNAPSHOT |  |  |  | | x |  |  | |  |  |  |  |
 | dda-config-commons| 0.2.0-SNAPSHOT | n.a. | n.a. | n.a. | n.a. |  |  | x | n.a | n.a | n.a. | n.a. | n.a. |
-| dda-git-crate   | 0.1.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
+| dda-git-crate   | 0.1.1 | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  |  |
 | dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||  |  |  |
@@ -44,7 +45,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-provider-crate|  |  |  |  | |  |  ||  | |  |  |  |  |
 | dda-serverspec-crate| 0.2.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |  |  |
-| dda-user-crate| 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x |
+| dda-user-crate| 0.5.1 | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |
 | dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |
 | dda-basic-crate | deprecated |  |  |  | |  |  |  | ||  |  |  |
