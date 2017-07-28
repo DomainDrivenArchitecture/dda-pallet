@@ -9,12 +9,12 @@
                  [prismatic/schema "1.1.6"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
-                 [ch.qos.logback/logback-classic "1.2.3"]
                  [dda/dda-config-commons "0.2.0"]
-                 [org.domaindrivenarchitecture/dda-pallet-commons "0.3.2"]]
+                 [dda/dda-pallet-commons "0.4.0"]]
   :profiles {:dev
              {:dependencies
               [[org.clojure/test.check "0.9.0"]
+               [ch.qos.logback/logback-classic "1.2.3"]
                [com.palletops/pallet "0.8.12" :classifier "tests"]]
               :plugins
               [[lein-sub "0.3.0"]]}
