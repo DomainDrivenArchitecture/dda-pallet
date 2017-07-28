@@ -1,4 +1,6 @@
 # dda-pallet
+[![Clojars Project](https://img.shields.io/clojars/v/dda/dda-pallet.svg)](https://clojars.org/dda/dda-pallet)
+
 Anyone who has so far dealt with Infrastructure as Code has to deal with a mix of Ruby, Python and go. If you want to get more from the Java world and always wanted to try functional programming, there is now a worthy & fresh alternative: "dda-pallet". Dda-pallet is OpenSource, written in clojure, running on the proven Java Virtual Machine.
 dda-pallet provides the whole tool-chain from one hand, is real modular, testable and well prepared for configuration data handling.
 
@@ -40,7 +42,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-pallet           | 0.5.0 | x | n.a. |  | x |  | x |  | x | x | x | x | x |
 | dda-pallet-commons| n.a. | n.a. | n.a |  |  |  |  |  |  | n.a. |  | n.a. |  |
 | dda-provider-crate|  |  |  |  | |  |  ||  | |  |  |  |  |
-| dda-servertest-crate| 0.2.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
+| dda-serverspec-crate| 0.2.0-SNAPSHOT | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |  |  |
 | dda-user-crate| 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |
