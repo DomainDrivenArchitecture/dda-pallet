@@ -18,7 +18,7 @@
   (:require
     [pallet.api :as api]
     [pallet.compute :as compute]
-    [org.domaindrivenarchitecture.pallet.commons.encrypted-credentials :as crypto]))
+    [dda.pallet.commons.encrypted-credentials :as crypto]))
 
 (defn provider
   ([]
