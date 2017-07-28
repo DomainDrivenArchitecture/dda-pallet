@@ -18,8 +18,8 @@
   (:require
     [pallet.api :as api]))
 
-(defn create-group [stack-config server-specs]
- (let [group-name (name (key (first (:group-specific-config stack-config))))]
+(defn group-spec [app-config server-specs]
+ (let [group-name (name (key (first (:group-specific-config app-config))))]
    (api/group-spec
     group-name
     :extends server-specs)))
