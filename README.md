@@ -33,13 +33,13 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | --- | --- |  --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dda-backup-crate | 0.4.2-SNAPSHOT |  |  |  | | x |  |  | |  |  |  |  |  |
 | dda-config-commons| 0.2.0-SNAPSHOT | n.a. | n.a. | n.a. | n.a. |  |  | x | n.a | n.a | n.a. | n.a. | n.a. |  |
-| dda-git-crate   | 0.1.1 | x | x |  | x | x | x | x | x | x | x | x | x |  |
+| dda-git-crate   | 0.1.1 | x | x |  | x | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  |  |  |
 | dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x |  |
 | dda-liferay-crate|  |  |  |  | |  |  |  | ||  |  |  |  |  |
 | dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |
 | dda-managed-vm| 0.2.2-SNAPSHOT | x | x |  |  | x | x | x | partial | x |  |  |  |  |
-| dda-mariadb-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x |  |
+| dda-mariadb-crate| 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |
 | dda-pallet           | 0.5.0 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |
 | dda-pallet-commons| 0.4.0 | n.a. | n.a |  |  |  |  | x |  | n.a. |  | n.a. |  |  |
 | dda-provider-crate|  |  |  |  | |  |  ||  | |  |  |  |  |  |
