@@ -44,7 +44,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-pallet-commons  | 0.4.1 | n.a. | n.a |  |  |  |  | x |  | n.a. | n.a | n.a. | n.a. | x |
 | dda-provider-crate  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-serverspec-crate| 0.5.3 | x | x |  | x | x | x | x | x | x | x | x | x | x |
-| dda-tomcat-crate| 0.1.6-SNAPSHOT |  |  |  | | x |  |  | ||  |  |  |  |
+| dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |
 | dda-user-crate| 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |
 | dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |  |
 | dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |  |
