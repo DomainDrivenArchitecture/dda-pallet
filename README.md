@@ -35,7 +35,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-config-commons| 0.2.2 | n.a. | n.a. | n.a. |  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x |
 | dda-git-crate   | 0.1.2 | x | x |  | x | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.3.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  | x | x |
-| dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x |  |
+| dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x | x |
 | dda-liferay-crate|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |
 | dda-managed-vm      | 0.3.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |
