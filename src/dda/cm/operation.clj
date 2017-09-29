@@ -13,6 +13,8 @@
 ; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
+
+; Deprecated use dda.pallet.commons.operation instead
 (ns dda.cm.operation
   (:require
     [schema.core :as s]
@@ -24,53 +26,49 @@
       (empty? provision-user) (api/make-user "pallet")
       (string? provision-user) (api/make-user provision-user :no-sudo (= provision-user "root"))
       (map? provision-user) (let [login (-> provision-user :login)
-                                  pwd (-> provision-user :password)] 
-                              (api/make-user login :password pwd :no-sudo (= login "root")))
-      )
-    ))
+                                  pwd (-> provision-user :password)]
+                              (api/make-user login :password pwd :no-sudo (= login "root"))))))
 
 (defn do-apply-configure
   "applies only the settings and configuration phase to a target.
 function awaits the login user set in (-> group :image :login-user)."
-  ([provider group]
-    (api/lift
-      group
-      :compute provider
-      :phase '(:settings :configure)
-      :user (provision-user group)))
-    )
+  {:deprecated "0.4.2"}
+  [provider group]
+  (api/lift
+    group
+    :compute provider
+    :phase '(:settings :configure)
+    :user (provision-user group)))
 
 (defn do-apply-install
     "applies the settings, init, install and configuration to a target.
 function awaits the login user set in (-> group :image :login-user)."
-    [provider group]
-    (api/lift
-      group
-      :compute provider
-      :phase '(:settings :init :install :configure)
-      :user (provision-user group))
-    )
+  {:deprecated "0.4.2"}
+  [provider group]
+  (api/lift
+    group
+    :compute provider
+    :phase '(:settings :init :install :configure)
+    :user (provision-user group)))
 
 (defn do-converge-install
     "Converges [count] nodes and applies the settings, init, install and configuration phase to a target.
 function awaits the login user set in (-> group :image :login-user)."
-  ([provider group]
-    (api/converge
-      group
-      :compute provider
-      :phase '(:settings :init :install :configure)
-      :user (provision-user group))
-    )
-  )
+  {:deprecated "0.4.2"}
+  [provider group]
+  (api/converge
+    group
+    :compute provider
+    :phase '(:settings :init :install :configure)
+    :user (provision-user group)))
 
 (defn do-server-test
     "applies only the settings and test (without side effects by convention) phase of group to a target.
 function awaits the login user set in (-> group :image :login-user)."
-  ([provider group]
-    (api/lift
-      group
-      :compute provider
-      :phase '(:settings :test)
-      :user (provision-user group))
-    )
-  )
+  {:deprecated "0.4.2"}
+  [provider group]
+  (api/lift
+    group
+    :compute provider
+    :phase '(:settings :test)
+    :user (provision-user group)))
