@@ -1,4 +1,4 @@
-(defproject dda/dda-pallet "0.5.5-SNAPSHOT"
+(defproject dda/dda-pallet "0.5.5"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :pallet {:source-paths ["src"]}
@@ -9,7 +9,7 @@
                  [prismatic/schema "1.1.7"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
-                 [dda/dda-config-commons "0.2.3-SNAPSHOT"]
+                 [dda/dda-config-commons "0.2.3"]
                  [dda/dda-pallet-commons "0.4.2"]]
   :profiles {:dev
              {:dependencies
