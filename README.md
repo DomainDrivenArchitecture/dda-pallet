@@ -24,29 +24,29 @@ dda-pallet is compatible to the following versions
 
 Find closer description to the DesignDecisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/6aa12e6226098abf944b87485e0f45a9dcef8395/en/80_devops/40_architecture/Decisions.html
 
-| | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder |
-| --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dda-backup-crate | 0.5.0-SNAPSHOT |  |  |  | | x |  |  | |  |  |  |  | x |  |
-| dda-config-commons| 0.2.2 | n.a. | n.a. | n.a. |  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x |  |
-| dda-git-crate   | 0.1.2 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |
-| dda-hardening-crate| 0.3.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  | x | x |  |
-| dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x | x |  |
+| | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links |
+| --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dda-backup-crate | 0.5.0-SNAPSHOT |  |  |  | | x |  |  | |  |  |  |  | x |  |  |
+| dda-config-commons| 0.2.2 | n.a. | n.a. | n.a. |  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x |  |  |
+| dda-git-crate   | 0.1.2 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |
+| dda-hardening-crate| 0.3.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  | x | x |  |  |
+| dda-httpd-crate| 0.2.2-SNAPSHOT | x | x | x |  | x | x | x | x | x | x | x | x | x |  |  |
 | dda-liferay-crate|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  |
-| dda-managed-vm      | 0.3.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  |
-| dda-mariadb-crate   | 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |  |
-| dda-pallet          | 0.5.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  |
-| dda-pallet-commons  | 0.4.1 | n.a. | n.a |  |  |  |  | x |  | n.a. | n.a | n.a. | n.a. | x |  |
+| dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  | x |
+| dda-managed-vm      | 0.3.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x |
+| dda-mariadb-crate   | 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |  |  |
+| dda-pallet          | 0.5.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  |  |
+| dda-pallet-commons  | 0.4.1 | n.a. | n.a |  |  |  |  | x |  | n.a. | n.a | n.a. | n.a. | x |  |  |
 | dda-provider-crate  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| dda-serverspec-crate| 0.3.1 | x | x |   | x | x | x | x | x | x | x | x | x | x | x |
-| dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |
-| dda-user-crate| 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |
-| dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |  |  |
-| dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |  |  |
-| dda-basic-crate | deprecated |  |  |  | |  |  |  | ||  |  |  |  |  |
-| dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |  |  |  |  |  |
-| dda-iptables-crate| deprecated |  |  |  |  |  |  | x |  |  |  |  |  |  |  |
+| dda-serverspec-crate| 0.3.1 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |  |
+| dda-user-crate| 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |
+| dda-init-crate| deprecated |  |  |  | |  |  |  | ||  |  |  |  |  |  |
+| dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |  |  |  |
+| dda-basic-crate | deprecated |  |  |  | |  |  |  | ||  |  |  |  |  |  |
+| dda-config-crate| deprecated |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| dda-collected-crate| deprecated |  |  |  | |  |  |  |  |  |  |  |  |  |  |  |
+| dda-iptables-crate| deprecated |  |  |  |  |  |  | x |  |  |  |  |  |  |  |  |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
