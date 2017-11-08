@@ -2,7 +2,7 @@
 [![Clojars Project](https://img.shields.io/clojars/v/dda/dda-pallet.svg)](https://clojars.org/dda/dda-pallet)
 [![Build Status](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet.svg?branch=master)](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet)
 
-[Meet us on Slack](http://clojurians.herokuapp.com/) | [Meet us on Meetup](https://www.meetup.com/de-DE/preview/dda-pallet-DevOps-Hacking-with-Clojure) | [Website & Blog](https://domaindrivenarchitecture.org)
+[![Slack](https://img.shields.io/badge/chat-clojurians-green.svg?style=flat)](https://clojurians.slack.com/messages/#dda-pallet/) | [<img src="https://domaindrivenarchitecture.org/img/meetup.svg" width=50 alt="DevOps Hacking with Clojure Meetup"> DevOps Hacking with Clojure](https://www.meetup.com/de-DE/preview/dda-pallet-DevOps-Hacking-with-Clojure) | [Website & Blog](https://domaindrivenarchitecture.org)
 
 Anyone who has so far dealt with Infrastructure as Code has to deal with a mix of Ruby, Python and go. If you want to get more from the Java world and always wanted to try functional programming, there is now a worthy & fresh alternative: "dda-pallet". Dda-pallet is OpenSource, written in clojure, running on the proven Java Virtual Machine.
 dda-pallet provides the whole tool-chain from one hand, is real modular, testable and well prepared for configuration data handling.
@@ -35,7 +35,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-managed-ide| 0.1.3-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  | x |
 | dda-managed-vm      | 0.3.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x |
 | dda-mariadb-crate   | 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |  |  |
-| dda-pallet          | 0.5.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  |  |
+| dda-pallet          | 0.5.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  | x |
 | dda-pallet-commons  | 0.4.1 | n.a. | n.a |  |  |  |  | x |  | n.a. | n.a | n.a. | n.a. | x |  |  |
 | dda-provider-crate  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-serverspec-crate| 0.3.1 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |
