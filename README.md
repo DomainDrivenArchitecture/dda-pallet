@@ -34,7 +34,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-liferay-crate|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-managed-ide     | 0.2.0-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  | x |
 | dda-managed-vm      | 0.5.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x |
-| dda-mariadb-crate   | 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |  |  |
+| dda-mariadb-crate   | 0.2.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x | x | x | x |  | x |
 | dda-pallet          | 0.5.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  | x |
 | dda-pallet-commons  | 0.5.3 | n.a. | n.a |  |  |  |  | x |  | n.a. | n.a | n.a. | n.a. | x |  | x |
 | dda-provider-crate  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
