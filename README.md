@@ -36,7 +36,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-managed-ide     | 0.2.0-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  | x | x |
 | dda-managed-vm      | 0.5.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x | x |
 | dda-mariadb-crate   | 0.2.2 | x | x |  |  | x | x | x | x | x | x | x | x | x |  | x |  |
-| dda-pallet          | 0.6.3 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x |  | x | n.a. |
+| dda-pallet          | 0.6.4 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x | x | x | n.a. |
 | dda-serverspec-crate| 0.4.0 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |  |  |
 | dda-user-crate| 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
