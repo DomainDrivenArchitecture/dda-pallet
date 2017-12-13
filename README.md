@@ -26,20 +26,20 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 
 | | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving |
 | --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dda-backup-crate | 0.7.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
 | dda-config-commons| 0.3.0 | n.a. | n.a. | n.a. |  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | n.a. |
 | dda-pallet-commons| 0.7.0 | n.a. | n.a. |  |  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | n.a. |
-| dda-git-crate   | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-pallet        | 0.6.5 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x | x | x | n.a. |
+| dda-user-crate    | 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
+| dda-backup-crate  | 0.7.1 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x |  |
+| dda-git-crate     | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate| 0.3.0-SNAPSHOT | x | x |  |  | x | x | x | x | x | x |  | x | x |  |  |  |
 | dda-httpd-crate| 0.2.4 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x |  |
 | dda-liferay-crate|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-managed-ide     | 0.2.0-SNAPSHOT | x | x |  | x | x |  | x | x | x |  |  |  |  |  | x | x |
 | dda-managed-vm      | 0.5.0 | x | x | x |  | x | x | x | x | x | x | x | x | x |  | x | x |
 | dda-mariadb-crate   | 0.2.2 | x | x |  |  | x | x | x | x | x | x | x | x | x |  | x |  |
-| dda-pallet          | 0.6.4 | x | n.a. |  | x |  | x |  | x | x | x | x | x | x | x | x | n.a. |
 | dda-serverspec-crate| 0.4.0 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |  |  |
-| dda-user-crate| 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
 | dda-provider-crate  | deprecated  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | dda-init-crate| deprecated |  |  |  | |  |  |  | |   |  |  |  |  |  |  |  |
 | dda-linkeddata-crate| deprecated |  |  |  | |  |  |  || |  |  |  |  |  |  |  |
