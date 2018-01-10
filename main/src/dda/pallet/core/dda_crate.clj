@@ -153,18 +153,20 @@
   (init-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
-      (actions/set-force-overwrite true)
-      (actions/set-install-new-files true)
       (actions/as-action (logging/info (str dda-crate) ": init phase."))
       (dda-init dda-crate partial-effective-config)))
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
+      (actions/set-force-overwrite true)
+      (actions/set-install-new-files true)
       (actions/as-action (logging/info (str dda-crate) ": config phase."))
       (dda-configure dda-crate partial-effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
+      (actions/set-force-overwrite true)
+      (actions/set-install-new-files true)
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (dda-install dda-crate partial-effective-config)))
   (test-raw [dda-crate dda-pallet-runtime]
