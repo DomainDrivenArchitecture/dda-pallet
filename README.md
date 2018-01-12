@@ -37,7 +37,7 @@ Find closer description to the DesignDecisions outlined here: https://dda.gitboo
 | dda-liferay-crate   | 0.3.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-ide     | 0.2.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-vm      | 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-mariadb-crate   | 0.2.2 | x | x |  |  | x | x | x | x | x | x | x | x | x |  | x |  |
+| dda-mariadb-crate   | 0.3.0 | x | x |  |  | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-serverspec-crate| 0.4.0 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |  |  |
 
