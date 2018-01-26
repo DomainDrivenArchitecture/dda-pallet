@@ -158,11 +158,15 @@
   (configure-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
-      (actions/as-action (logging/info (str dda-crate) ": test phase."))
+      (actions/set-force-overwrite true)
+      (actions/set-install-new-files true)
+      (actions/as-action (logging/info (str dda-crate) ": config phase."))
       (dda-configure dda-crate partial-effective-config)))
   (install-raw [dda-crate dda-pallet-runtime]
     (let [partial-effective-config
           (get-config (get-in dda-crate [:facility]))]
+      (actions/set-force-overwrite true)
+      (actions/set-install-new-files true)
       (actions/as-action (logging/info (str dda-crate) ": install phase."))
       (dda-install dda-crate partial-effective-config)))
   (test-raw [dda-crate dda-pallet-runtime]
@@ -186,9 +190,7 @@
        :configure (api/plan-fn (configure-raw dda-crate nil))
        :install (api/plan-fn (install-raw dda-crate nil))
        :test (api/plan-fn (test-raw dda-crate nil))
-       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))}))
-  )
-
+       :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))})))
 
 (defn make-dda-crate
   "Creates a DdaCrate. (Wrapper for ->DdaCrate with validation.)"
