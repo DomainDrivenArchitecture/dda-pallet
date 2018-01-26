@@ -26,9 +26,9 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving |
 | --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dda-config-commons  | 0.3.0 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | n.a. |
-| dda-pallet-commons  | 0.7.0 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | n.a. |
-| dda-pallet          | 0.7.0 | x |n.a.|n.a.| x |  | x | x | x | x | x | x | x | x | x | x | n.a. |
+| dda-config-commons  | 1.0.3 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet-commons  | 1.0.0 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet          | 1.0.0 | x |n.a.|n.a.| x |  | x | x | x | x | x | x | x | x | x | x | n.a. |
 | dda-user-crate      | 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
 | dda-backup-crate    | 0.7.1 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-git-crate       | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
