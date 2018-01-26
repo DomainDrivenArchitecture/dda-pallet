@@ -33,8 +33,8 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-backup-crate    | 0.7.1 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-git-crate       | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-hardening-crate | 0.3.0 | x | x |  |  | x | x | x | x | x | x |  | x | x |  |  |  |
-| dda-httpd-crate     | 0.2.4 | x | x |  | x | x | x | x | x | x | x | x | x | x |  | x |  |
-| dda-liferay-crate   | 0.3.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-httpd-crate     | 1.0.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  | x |  |
+| dda-liferay-crate   | 1.0.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-ide     | 0.2.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-vm      | 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-mariadb-crate   | 0.3.0 | x | x |  |  | x | x | x | x | x | x | x | x | x | x | x | x |
