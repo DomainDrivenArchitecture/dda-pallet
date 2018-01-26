@@ -192,8 +192,6 @@
        :test (api/plan-fn (test-raw dda-crate nil))
        :app-rollout (api/plan-fn (app-rollout-raw dda-crate nil))})))
 
-
-
 (defn make-dda-crate
   "Creates a DdaCrate. (Wrapper for ->DdaCrate with validation.)"
   [& {:keys [facility version config-default config-schema]
