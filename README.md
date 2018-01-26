@@ -28,7 +28,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dda-config-commons  | 1.0.3 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
 | dda-pallet-commons  | 1.0.0 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
-| dda-pallet          | 1.0.0 | x |n.a.|n.a.| x |  | x | x | x | x | x | x | x | x | x | x | n.a. |
+| dda-pallet          | 1.0.1 | x |n.a.|n.a.| x |  | x | x | x | x | x | x | x | x | x | x | n.a. |
 | dda-user-crate      | 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
 | dda-backup-crate    | 0.7.1 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x |  |
 | dda-git-crate       | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
@@ -37,9 +37,9 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-liferay-crate   | 1.0.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-ide     | 0.2.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-managed-vm      | 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-mariadb-crate   | 0.3.0 | x | x |  |  | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-mariadb-crate   | 1.0.0 | x | x |  |  | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-serverspec-crate| 0.4.0 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
-| dda-tomcat-crate| 0.2.0-SNAPSHOT | x | x |  | x  | x | x | x | x | x | x | x | x | x |  |  |  |
+| dda-tomcat-crate    | 1.0.0 | x | x |  | x  | x | x | x | x | x | x | x | x | x | x | x |  |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
