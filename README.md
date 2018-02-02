@@ -24,22 +24,22 @@ Dda-pallet is compatible with the following versions
 
 Find closer description to the design decisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/6aa12e6226098abf944b87485e0f45a9dcef8395/en/80_devops/40_architecture/Decisions.html
 
-| | Version | Separate Domain from Infrastructure | Integration Folder | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving |
-| --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dda-config-commons  | 1.0.3 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
-| dda-pallet-commons  | 1.0.0 |n.a.|n.a.|n.a.|  | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
-| dda-pallet          | 1.0.1 | x |n.a.|n.a.| x |  | x | x | x | x | x | x | x | x | x | x | n.a. |
-| dda-user-crate      | 0.6.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  |  |  |
-| dda-backup-crate    | 0.7.1 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x |  |
-| dda-git-crate       | 0.2.2 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-hardening-crate | 0.3.0 | x | x |  |  | x | x | x | x | x | x |  | x | x |  |  |  |
-| dda-httpd-crate     | 1.0.0 | x | x |  | x | x | x | x | x | x | x | x | x | x |  | x |  |
-| dda-liferay-crate   | 1.0.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-managed-ide     | 0.2.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-managed-vm      | 0.5.0 | x | x |  | x | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-mariadb-crate   | 1.0.0 | x | x |  |  | x | x | x | x | x | x | x | x | x | x | x | x |
-| dda-serverspec-crate| 0.4.0 | x | x |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
-| dda-tomcat-crate    | 1.0.0 | x | x |  | x  | x | x | x | x | x | x | x | x | x | x | x |  |
+| | Version | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving |
+| --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dda-config-commons  | 1.0.3 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet-commons  | 1.0.0 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet          | 1.0.1 |   | x |   | x | x | x | x | x | x | x | x | x | x | n.a. |
+| dda-user-crate      | 0.6.0 |   | x | x | x | x | x | x | x | x | x | x |   |   |   |
+| dda-backup-crate    | 0.7.1 |   | x | x | x | x | x | x | x | x | x | x | x | x |   |
+| dda-git-crate       | 0.2.2 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-hardening-crate | 0.3.0 |   |   | x | x | x | x | x | x |   | x | x |   |   |  |
+| dda-httpd-crate     | 1.0.0 |   | x | x | x | x | x | x | x | x | x | x |   | x |  |
+| dda-liferay-crate   | 1.0.0 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-managed-ide     | 1.0.0 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-managed-vm      | 1.0.0 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-mariadb-crate   | 1.0.0 |   |   | x | x | x | x | x | x | x | x | x | x | x | x |
+| dda-serverspec-crate| 0.4.0 |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
+| dda-tomcat-crate    | 1.0.0 |   | x | x | x | x | x | x | x | x | x | x | x | x |  |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
