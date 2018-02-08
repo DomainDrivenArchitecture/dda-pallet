@@ -10,7 +10,7 @@
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
                  [dda/dda-config-commons "1.0.3"]
-                 [dda/dda-pallet-commons "1.0.0"]]
+                 [dda/dda-pallet-commons "1.1.0-SNAPSHOT"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]
@@ -26,7 +26,7 @@
                    [[org.clojure/test.check "0.10.0-alpha2"]
                     [com.palletops/pallet "0.8.12" :classifier "tests"]
                     [ch.qos.logback/logback-classic "1.2.3"]
-                    [org.slf4j/jcl-over-slf4j "1.8.0-beta0"]]
+                    [org.slf4j/jcl-over-slf4j "1.8.0-beta1"]]
                    :plugins
                    [[lein-sub "0.3.0"]]
                    :leiningen/reply
