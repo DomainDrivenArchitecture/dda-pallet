@@ -14,7 +14,8 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.core.dda-crate
+(ns dda.pallet.core.dda-crate-1
+  {:deprecated "1.2"}
   (:require
    [schema.core :as s]
    [pallet.actions :as actions]
