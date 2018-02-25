@@ -15,7 +15,7 @@
 ; limitations under the License.
 
 (ns dda.pallet.test-crate
-  (:require 
+  (:require
    [pallet.actions :as actions]
    [pallet.api]
    [pallet.compute]
@@ -25,17 +25,16 @@
    [pallet.node-value :as nv]
    [pallet.repl]
    [clojure.tools.logging :as logging]
-   [dda.pallet.core.dda-crate :refer :all]
+   [dda.pallet.core.infra :refer :all]
    [dda.config.commons.version-model :refer :all]))
 
 (schema.core/set-fn-validation! true)
 
-(def TestCrate 
-  (make-dda-crate
-    :facility :testcrate 
-    :version [1 3 0]))
+(def TestCrate
+  (make-dda-crate-infra
+    :facility :testcrate))
 
-(def with-test (create-server-spec TestCrate))
+(def with-test (create-infra-plan TestCrate))
 
 ;;; Do a small local test
 
@@ -49,7 +48,7 @@
   (pallet.compute/instantiate-provider
     "node-list" :node-list [localhost-node]))
 
-(pallet.repl/explain-session 
+(pallet.repl/explain-session
     (pallet.api/lift
         mygroup
       :user (pallet.api/make-user "pallet")

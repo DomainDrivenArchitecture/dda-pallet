@@ -1,4 +1,4 @@
-(defproject dda/dda-pallet "1.2.1-SNAPSHOT"
+(defproject dda/dda-pallet "2.0.0-SNAPSHOT"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :pallet {:source-paths ["src"]}

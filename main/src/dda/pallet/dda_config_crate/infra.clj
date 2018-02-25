@@ -18,7 +18,7 @@
   (:require
     [pallet.api :as api]
     [pallet.crate :as crate]
-    [dda.pallet.core.dda-crate :as dda-crate]))
+    [dda.pallet.core.infra :as dda-crate]))
 
 
 (defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]
@@ -38,8 +38,6 @@
   ""
   [config]
   (let
-    [config-crate (dda-crate/make-dda-crate
-                    :facility :dda-config
-                    :version [1 4 0]
-                    :config-default config)]
-    (dda-crate/create-server-spec config-crate)))
+    [config-crate (dda-crate/make-dda-crate-infra
+                    :facility :dda-config)]
+    (dda-crate/create-infra-plan config-crate)))

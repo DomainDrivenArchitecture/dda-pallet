@@ -17,8 +17,7 @@
 (ns dda.pallet.core.dda-crate.config
   (:require
     [pallet.api :as api]
-    [pallet.crate :as crate]
-    ))
+    [pallet.crate :as crate]))
 
 (defn get-global-config
   ""
@@ -28,7 +27,7 @@
 (defn get-node-specific-config
   "get the node spec. config"
   []
-    (get-in (crate/get-settings :dda-config) [:node-specific-config]))
+  (get-in (crate/get-settings :dda-config) [:node-specific-config]))
 
 (defn get-nodespecific-config []
   (get-node-specific-config))
