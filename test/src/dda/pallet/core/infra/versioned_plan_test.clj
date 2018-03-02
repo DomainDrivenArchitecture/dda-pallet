@@ -14,11 +14,11 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.core.dda-crate.versioned-plan-test
+(ns dda.pallet.core.infra.versioned-plan-test
   (:require
     [clojure.test :refer :all]
     [schema.core :as s]
-    [dda.pallet.core.dda-crate.versioned-plan :as sut]))
+    [dda.pallet.core.infra.versioned-plan :as sut]))
 
 (deftest install-marker
   (testing "path of install-marker"

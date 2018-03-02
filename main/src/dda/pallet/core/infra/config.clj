@@ -14,7 +14,7 @@
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
 
-(ns dda.pallet.core.dda-crate.config
+(ns dda.pallet.core.infra.config
   (:require
     [pallet.api :as api]
     [pallet.crate :as crate]))
