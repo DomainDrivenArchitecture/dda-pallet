@@ -10,7 +10,7 @@
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
                  [dda/dda-config-commons "1.1.0"]
-                 [dda/dda-pallet-commons "1.2.0"]]
+                 [dda/dda-pallet-commons "1.2.2-SNAPSHOT"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]

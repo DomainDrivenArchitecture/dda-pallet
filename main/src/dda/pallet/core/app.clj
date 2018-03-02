@@ -48,7 +48,7 @@
   dispatch-by-crate-facility)
 (s/defmethod group-spec :default
   [crate-app  :- DdaCrateApp
-   domain-config]
+   app-config]
   (logging/info
     (str crate-app) ": there is no group spec."))
 

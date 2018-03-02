@@ -16,19 +16,24 @@
 
 (ns dda.pallet.dda-config-crate.infra
   (:require
+    [clojure.tools.logging :as logging]
     [pallet.api :as api]
     [pallet.crate :as crate]
-    [dda.pallet.core.infra :as dda-crate]))
+    [pallet.actions :as actions]
+    [dda.pallet.core.infra :as infra-core]))
 
 
-(defmethod dda-crate/dda-settings :dda-config [dda-crate effective-config]
-  (let [node-id (crate/target-id)
+(defmethod infra-core/dda-settings :dda-config [dda-crate effective-config]
+  (let [facility (get-in dda-crate [:facility])
+        node-id (crate/target-id)
         group-name (crate/group-name)
-        config (get-in dda-crate [:config-default])
+        config (get-in dda-crate [:payload])
         group-specific-config (get-in config [:group-specific-config group-name])
         node-specific-config (get-in config [:node-specific-config node-id])]
+    (actions/as-action
+        (logging/debug (str "config-settings for group: " group-name ", facility: " facility)))
     (crate/assoc-settings
-      (get-in dda-crate [:facility])
+      facility
       {:global-config config
        :group-specific-config group-specific-config
        :node-specific-config node-specific-config})))
@@ -38,6 +43,6 @@
   ""
   [config]
   (let
-    [config-crate (dda-crate/make-dda-crate-infra
-                    :facility :dda-config)]
-    (dda-crate/create-infra-plan config-crate)))
+    [config-crate (infra-core/make-dda-crate-infra
+                    :facility :dda-config :payload config)]
+    (infra-core/create-infra-plan config-crate)))

@@ -47,14 +47,16 @@
 
 (s/defrecord DdaCrateInfra
   [facility :- s/Keyword
-   infra-schema :- {s/Any s/Any}]
+   infra-schema :- {s/Any s/Any}
+   payload :- s/Any]
   Object
   (toString [_] (str "DdaCrateInfra[facility=" (:facility _) "]")))
 
 (s/defn dispatch-by-crate-facility :- s/Keyword
   "Dispatcher for phase multimethods by facility. Also does a
    schema validation of arguments."
-  [dda-crate :- DdaCrateInfra config]
+  [dda-crate :- DdaCrateInfra
+   config]
   (:facility dda-crate))
 
 (defmulti dda-settings
@@ -62,7 +64,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-settings :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -72,7 +74,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-init :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -82,7 +84,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-configure :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -92,7 +94,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-install :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -102,7 +104,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-test :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -112,7 +114,7 @@
   dispatch-by-crate-facility)
 (s/defmethod dda-app-rollout :default
   [dda-crate  :- DdaCrateInfra
-   effective-configuration]
+   config]
   (actions/as-action
     (logging/info
       (str dda-crate) ": doing nothing.")))
@@ -122,7 +124,7 @@
   [facility]
   (let [node-add-config (config/get-node-specific-additional-config facility)
         group-add-config (config/get-group-specific-additional-config facility)
-        group-config (facility  (config/get-group-specific-config))]
+        group-config (facility (config/get-group-specific-config))]
     (cond
       (some? node-add-config) node-add-config
       (some? group-add-config) group-add-config
@@ -131,38 +133,33 @@
 (extend-type DdaCrateInfra
   PhasesSpecification
   (settings-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
-      (actions/as-action (logging/info (str infra) ": settings phase."))
+    (let [config (get-config (get-in infra [:facility]))]
+      (actions/as-action (logging/debug (str infra) ": settings phase."))
       (dda-settings infra config)))
   (init-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
-      (actions/as-action (logging/info (str infra) ": init phase."))
+    (let [config (get-config (get-in infra [:facility]))]
+      (actions/as-action (logging/debug (str infra) ": init phase."))
       (dda-init infra config)))
   (configure-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
+    (let [facility (get-in infra [:facility])
+          config (get-config facility)]
+      (actions/as-action (logging/debug (str infra) ": config phase."))
       (actions/set-force-overwrite true)
       (actions/set-install-new-files true)
-      (actions/as-action (logging/info (str infra) ": config phase."))
       (dda-configure infra config)))
   (install-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
+    (let [config (get-config (get-in infra [:facility]))]
+      (actions/as-action (logging/debug (str infra) ": install phase."))
       (actions/set-force-overwrite true)
       (actions/set-install-new-files true)
-      (actions/as-action (logging/info (str infra) ": install phase."))
       (dda-install infra config)))
   (test-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
-      (actions/as-action (logging/info (str infra) ": test phase."))
+    (let [config (get-config (get-in infra [:facility]))]
+      (actions/as-action (logging/debug (str infra) ": test phase."))
       (dda-test infra config)))
   (app-rollout-raw [infra dda-pallet-runtime]
-    (let [config
-          (get-config (get-in infra [:facility]))]
-      (actions/as-action (logging/info (str infra) ": rollout phase."))
+    (let [config (get-config (get-in infra [:facility]))]
+      (actions/as-action (logging/debug (str infra) ": rollout phase."))
       (dda-app-rollout infra config)))
 
   PalletSpecification
@@ -178,8 +175,9 @@
 
 (defn make-dda-crate-infra
   "Creates a DdaCrate. (Wrapper for ->DdaCrate with validation.)"
-  [& {:keys [facility infra-schema]
-      :or {infra-schema {s/Any s/Any}}}]
+  [& {:keys [facility infra-schema payload]
+      :or {infra-schema {s/Any s/Any}
+           payload nil}}]
   (s/validate
     DdaCrateInfra
-    (->DdaCrateInfra facility infra-schema)))
+    (->DdaCrateInfra facility infra-schema payload)))
