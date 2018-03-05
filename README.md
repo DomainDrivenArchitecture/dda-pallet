@@ -26,9 +26,9 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | Docker based Integration Tests | Unit Tests for Domain | Boundaries | Input / Output Spec | Short Package | Composition over API | Group-based Configuration | Use dda-pallet aws/existing | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving |
 | --- | --- |  --- | --- | --- | --- | --- |--- | --- | --- | --- | --- | --- | --- | --- | --- |
-| dda-config-commons  | 1.1.0 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
-| dda-pallet-commons  | 1.2.0 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
-| dda-pallet          | 1.2.0 |   | x |   | x | x | x | x | x | x | x | x | x | x | n.a. |
+| dda-config-commons  | 1.2.0 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet-commons  | 1.3.0 | - | - | x | x | x | n.a | n.a | n.a. | n.a. | n.a. | x | x | x | x |
+| dda-pallet          | 2.0.0 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
 | dda-user-crate      | 0.6.0 |   | x | x | x | x | x | x | x | x | x | x |   |   |   |
 | dda-backup-crate    | 0.7.1 |   | x | x | x | x | x | x | x | x | x | x | x | x |   |
 | dda-git-crate       | 0.2.2 |   | x | x | x | x | x | x | x | x | x | x | x | x | x |
