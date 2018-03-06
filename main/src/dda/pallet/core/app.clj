@@ -75,7 +75,7 @@
     "the existing provider for unresolved configuration")
   (existing-provisioning-spec-resolved [crate-app domain-config targets-config])
   (existing-provisioning-spec [crate-app domain-config targets-config])
-  (execute-existing-serverspec [crate-app domain-config target-config])
+  (execute-existing-serverspec [crate-app domain-config target-config verbosity])
   (execute-existing-install [crate-app domain-config target-config])
   (execute-existing-configure [crate-app domain-config target-config]))
 
@@ -92,7 +92,7 @@
     "the existing provider for unresolved configuration")
   (aws-provisioning-spec-resolved [crate-app domain-config targets-config count])
   (aws-provisioning-spec [crate-app domain-config targets-config count])
-  (execute-aws-serverspec [crate-app domain-config target-config])
+  (execute-aws-serverspec [crate-app domain-config target-config verbosity])
   (execute-aws-install [crate-app domain-config target-config count])
   (execute-aws-configure [crate-app domain-config target-config]))
 
@@ -155,11 +155,13 @@
       crate-app
       (secret/resolve-secrets domain-config (:domain-schema crate-app))
       (existing/resolve-targets targets-config)))
-  (execute-existing-serverspec [crate-app domain-config target-config]
-    (operation/do-test
-      (existing-provider crate-app target-config)
-      (existing-provisioning-spec crate-app domain-config target-config)
-      :summarize-session true))
+  (execute-existing-serverspec [crate-app domain-config target-config verbosity]
+    (let [session (operation/do-test
+                    (aws-provider crate-app target-config)
+                    (aws-provisioning-spec crate-app domain-config target-config 0)
+                    :summarize-session false)]
+      (summary/summarize-test-session session :verbose verbosity)
+      (summary/session-passed? session)))
   (execute-existing-install [crate-app domain-config target-config]
     (operation/do-apply-install
       (existing-provider crate-app target-config)
@@ -204,11 +206,13 @@
       (secret/resolve-secrets domain-config (:domain-schema crate-app))
       (aws/resolve-targets targets-config)
       count))
-  (execute-aws-serverspec [crate-app domain-config target-config]
-    (operation/do-test
-      (aws-provider crate-app target-config)
-      (aws-provisioning-spec crate-app domain-config target-config 0)
-      :summarize-session true))
+  (execute-aws-serverspec [crate-app domain-config target-config verbosity]
+    (let [session (operation/do-test
+                    (aws-provider crate-app target-config)
+                    (aws-provisioning-spec crate-app domain-config target-config 0)
+                    :summarize-session false)]
+      (summary/summarize-test-session session :verbose verbosity)
+      (summary/session-passed? session)))
   (execute-aws-install [crate-app domain-config target-config count]
     (operation/do-converge-install
       (aws-provider crate-app target-config)
@@ -240,14 +244,15 @@
                          (load-domain crate-app (:default-domain-file crate-app)))]
      (execute-existing-configure crate-app domain-config target-config)))
   (existing-serverspec [crate-app options]
-    (let [{:keys [domain targets]} options
+    (let [{:keys [domain targets verbosity]
+           :or {verbosity 1}} options
           target-config (if (some? targets)
                           (load-existing-targets crate-app targets)
                           (load-existing-targets crate-app (:default-targets-file crate-app)))
           domain-config (if (some? domain)
                           (load-domain crate-app domain)
                           (load-domain crate-app (:default-domain-file crate-app)))]
-      (execute-existing-serverspec crate-app domain-config target-config)))
+      (execute-existing-serverspec crate-app domain-config target-config verbosity)))
 
   AwsIntegration
   (aws-install [crate-app count options]
@@ -260,8 +265,8 @@
   (aws-configure [crate-app options]
    (let [{:keys [domain targets]} options
          target-config (if (some? targets)
-                         (load-existing-targets crate-app targets)
-                         (load-existing-targets crate-app (:default-targets-file crate-app)))
+                         (load-aws-targets crate-app targets)
+                         (load-aws-targets crate-app (:default-targets-file crate-app)))
          domain-config (if (some? domain)
                          (load-domain crate-app domain)
                          (load-domain crate-app (:default-domain-file crate-app)))]
@@ -269,12 +274,12 @@
   (aws-serverspec [crate-app options]
     (let [{:keys [domain targets]} options
           target-config (if (some? targets)
-                          (load-existing-targets crate-app targets)
-                          (load-existing-targets crate-app (:default-targets-file crate-app)))
+                          (load-aws-targets crate-app targets)
+                          (load-aws-targets crate-app (:default-targets-file crate-app)))
           domain-config (if (some? domain)
                           (load-domain crate-app domain)
                           (load-domain crate-app (:default-domain-file crate-app)))]
-      (execute-aws-serverspec crate-app domain-config target-config))))
+      (execute-aws-serverspec crate-app domain-config target-config 1))))
 
 
 (defn make-dda-crate-app
