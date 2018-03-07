@@ -157,8 +157,8 @@
       (existing/resolve-targets targets-config)))
   (execute-existing-serverspec [crate-app domain-config target-config verbosity]
     (let [session (operation/do-test
-                    (aws-provider crate-app target-config)
-                    (aws-provisioning-spec crate-app domain-config target-config 0)
+                    (existing-provider crate-app target-config)
+                    (existing-provisioning-spec crate-app domain-config target-config)
                     :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
       (summary/session-passed? session)))
