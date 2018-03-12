@@ -38,7 +38,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-managed-ide     | 1.0.2 |   | x | x | x | x | x | x | x | x |
 | dda-managed-vm      | 1.0.1 |   | x | x | x | x | x | x | x | x |
 | dda-mariadb-crate   | 1.0.0 |   |   | x | x | x | x | x | x |   |
-| dda-serverspec-crate| 0.4.0 |   | x | x | x | x | x | x | x | x |
+| dda-serverspec-crate| 1.0.2 |   | x | x | x | x | x | x | x | x |
 | dda-tomcat-crate    | 1.0.0 |   | x | x | x | x | x | x |   |   |
 
 # License
