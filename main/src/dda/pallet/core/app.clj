@@ -17,6 +17,7 @@
   (:require
    [schema.core :as s]
    [clojure.tools.logging :as logging]
+   [pallet.api :as api]
    [dda.pallet.commons.existing :as existing]
    [dda.pallet.commons.aws :as aws]
    [dda.pallet.commons.external-config :as ext-config]
@@ -291,3 +292,9 @@
     DdaCrateApp
     (->DdaCrateApp facility domain-schema domain-schema-resolved
                    default-domain-file default-targets-file)))
+
+(defn pallet-group-spec [app-config server-specs]
+ (let [group-name (name (key (first (:group-specific-config app-config))))]
+   (api/group-spec
+    group-name
+    :extends server-specs)))
