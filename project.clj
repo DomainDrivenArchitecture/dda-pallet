@@ -7,7 +7,7 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [commons-codec "1.11"]
                  [prismatic/schema "1.1.7"]
-                 [selmer "1.11.17"]
+                 [selmer "1.11.7"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
                  [dda/dda-config-commons "1.2.0"]
