@@ -10,7 +10,7 @@
                  [selmer "1.11.7"]
                  [com.palletops/pallet "0.8.12"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
-                 [dda/dda-config-commons "1.2.0"]
+                 [dda/dda-config-commons "1.3.0-SNAPSHOT"]
                  [dda/dda-pallet-commons "1.3.0"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
