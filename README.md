@@ -31,15 +31,15 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-pallet          | 2.1.1 |   | x | x | x | x | x | x | x | x |
 | dda-user-crate      | 1.0.3 |   | x | x | x | x | x | x | x | x |
 | dda-backup-crate    | 0.7.1 |   | x | x | x | x | x | x |   |   |
-| dda-git-crate       | 1.0.1 |   | x | x | x | x | x | x | x | x |
-| dda-hardening-crate | 0.3.0 |   |   |   | x | x |   |   |   |   |
+| dda-git-crate       | 1.0.1 |   | x | x | x | x | x | x |   | x |
+| dda-hardening-crate | 1.0.0 |   | x | x | x | x | x | x | - | x |
 | dda-httpd-crate     | 2.0.0 |   | x | x | x | x | x | x | x | x |
 | dda-liferay-crate   | 1.0.0 |   | x | x | x | x | x | x | x |   |
 | dda-managed-ide     | 1.0.2 |   | x | x | x | x | x | x | x | x |
 | dda-managed-vm      | 1.0.1 |   | x | x | x | x | x | x | x | x |
-| dda-mariadb-crate   | 1.0.0 |   |   | x | x | x | x | x | x |   |
+| dda-mariadb-crate   | 1.0.0 |   |   | x | x | x | x | x | x | x |
 | dda-serverspec-crate| 1.0.2 |   | x | x | x | x | x | x | x | x |
-| dda-tomcat-crate    | 1.0.0 |   | x | x | x | x | x | x |   |   |
+| dda-tomcat-crate    | 2.0.0 |   | x | x | x | x | x | x | - | x |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
