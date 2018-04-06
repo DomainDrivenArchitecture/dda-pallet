@@ -32,7 +32,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-user-crate      | 1.0.3 |   | x | x | x | x | x | x | x | x |
 | dda-backup-crate    | 0.7.1 |   | x | x | x | x | x | x |   |   |
 | dda-git-crate       | 1.0.1 |   | x | x | x | x | x | x |   | x |
-| dda-hardening-crate | 1.0.0 |   | x | x | x | x | x | x | - | x |
+| dda-hardening-crate | 1.0.1 |   | x | x | x | x | x | x | - | x |
 | dda-httpd-crate     | 2.0.0 |   | x | x | x | x | x | x | x | x |
 | dda-liferay-crate   | 1.0.0 |   | x | x | x | x | x | x | x |   |
 | dda-managed-ide     | 1.0.2 |   | x | x | x | x | x | x | x | x |
