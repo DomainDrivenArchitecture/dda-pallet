@@ -52,6 +52,22 @@
   (logging/info
     (str crate-app) ": there is no group spec."))
 
+(defmulti load-domain-hook
+  "Multimethod to modify domain after load."
+  dispatch-by-crate-facility)
+(s/defmethod load-domain-hook :default
+  [crate-app  :- DdaCrateApp
+   domain-config]
+  domain-config)
+
+(defmulti load-existing-targets-hook
+  "Multimethod to modify domain after load."
+  dispatch-by-crate-facility)
+(s/defmethod load-existing-targets-hook :default
+  [crate-app  :- DdaCrateApp
+   targets]
+  targets)
+
 (defprotocol Domain
   (load-domain
     [crate-app file-name]
@@ -113,7 +129,8 @@
   (load-domain [crate-app file-name]
     (s/validate s/Str file-name)
     (s/validate (:domain-schema crate-app)
-      (ext-config/parse-config file-name)))
+      (load-domain-hook crate-app
+        (ext-config/parse-config file-name))))
 
   SessionSummarization
     ; TODO: validate as soon as pallet-commons issue is fixed
@@ -129,8 +146,9 @@
   ExistingTargets
   (load-existing-targets [crate-app file-name]
     (s/validate s/Str file-name)
-    (let [result (existing/load-targets file-name)]
-      (s/validate existing/Targets result)))
+    (s/validate existing/Targets
+      (load-existing-targets-hook crate-app
+        (existing/load-targets file-name))))
   (existing-provider-resolved [crate-app targets-config]
      (s/validate existing/TargetsResolved targets-config)
      (let [{:keys [existing]} targets-config]
@@ -177,8 +195,8 @@
   AwsTargets
   (load-aws-targets [crate-app file-name]
     (s/validate s/Str file-name)
-    (let [result (aws/load-targets file-name)]
-      (s/validate aws/Targets result)))
+    (s/validate aws/Targets
+      (aws/load-targets file-name)))
   (aws-provider-resolved [crate-app targets-config]
      (s/validate aws/TargetsResolved targets-config)
      (let [{:keys [context]} targets-config]
