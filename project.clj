@@ -4,14 +4,14 @@
   :pallet {:source-paths ["src"]}
   :license {:name "Apache License, Version 2.0"
             :url "https://www.apache.org/licenses/LICENSE-2.0.html"}
-  :dependencies [[org.clojure/clojure "1.7.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  [commons-codec "1.11"]
                  [prismatic/schema "1.1.9"]
                  [selmer "1.11.7"]
-                 [com.palletops/pallet "0.8.12"]
+                 [dda/pallet "0.8.13-SNAPSHOT"]
                  [com.palletops/stevedore "0.8.0-beta.7"]
                  [dda/dda-config-commons "1.3.0"]
-                 [dda/dda-pallet-commons "1.3.0"]]
+                 [dda/dda-pallet-commons "1.3.1-SNAPSHOT"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]
