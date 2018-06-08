@@ -9,8 +9,7 @@
                  [prismatic/schema "1.1.9"]
                  [selmer "1.11.7"]
                  [dda/pallet "0.8.13-SNAPSHOT"]
-                 [com.palletops/stevedore "0.8.0-beta.7"]
-                 [dda/dda-config-commons "1.3.0"]
+                 [dda/dda-config-commons "1.3.1-SNAPSHOT"]
                  [dda/dda-pallet-commons "1.3.1-SNAPSHOT"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
@@ -25,7 +24,7 @@
                                     "test/resources"]
                    :dependencies
                    [[org.clojure/test.check "0.10.0-alpha2"]
-                    [com.palletops/pallet "0.8.12" :classifier "tests"]
+                    [dda/pallet "0.8.13-SNAPSHOT" :classifier "tests"]
                     [ch.qos.logback/logback-classic "1.3.0-alpha4"]
                     [org.slf4j/jcl-over-slf4j "1.8.0-beta2"]]
                    :plugins
