@@ -94,7 +94,8 @@
   (existing-provisioning-spec [crate-app domain-config targets-config])
   (execute-existing-serverspec [crate-app domain-config target-config verbosity])
   (execute-existing-install [crate-app domain-config target-config])
-  (execute-existing-configure [crate-app domain-config target-config]))
+  (execute-existing-configure [crate-app domain-config target-config])
+  (execute-existing-app-rollout [crate-app domain-config target-config]))
 
 (defprotocol AwsTargets
   "Protocol for interact on existing targets"
@@ -116,7 +117,8 @@
 (defprotocol ExistingIntegration
   (existing-install [crate-app options])
   (existing-configure [crate-app options])
-  (existing-serverspec [crate-app options]))
+  (existing-serverspec [crate-app options])
+  (existing-app-rollout [crate-app options]))
 
 (defprotocol AwsIntegration
   (aws-install [crate-app count options])
@@ -181,6 +183,11 @@
                     :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
       (summary/session-passed? session)))
+  (execute-existing-app-rollout [crate-app domain-config target-config]
+    (let [session (operation/do-app-rollout
+                    (existing-provider crate-app target-config)
+                    (existing-provisioning-spec crate-app domain-config target-config)
+                    :summarize-session true)]))
   (execute-existing-install [crate-app domain-config target-config]
     (operation/do-apply-install
       (existing-provider crate-app target-config)
@@ -272,6 +279,15 @@
                           (load-domain crate-app domain)
                           (load-domain crate-app (:default-domain-file crate-app)))]
       (execute-existing-serverspec crate-app domain-config target-config verbosity)))
+  (existing-app-rollout [crate-app options]
+    (let [{:keys [domain targets]} options
+          target-config (if (some? targets)
+                          (load-existing-targets crate-app targets)
+                          (load-existing-targets crate-app (:default-targets-file crate-app)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-existing-app-rollout crate-app domain-config target-config)))
 
   AwsIntegration
   (aws-install [crate-app count options]

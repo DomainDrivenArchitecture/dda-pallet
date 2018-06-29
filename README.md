@@ -8,9 +8,9 @@ dda-pallet is a DevOps system for cloud image provisioning, test driven DevOps a
 
 ## Compatibility
 Dda-pallet is compatible with the following versions
- * pallet 0.8
- * clojure 1.7
- * (x)ubuntu14.04 / 16.04
+ * pallet 0.9
+ * clojure 1.9
+ * (x)ubuntu 16.04 / 18.04
 
 ## Principles
   * Adaptable architectural Abstraction Layer: Every Module provides two levels of API. First the low level API oriented on linux installation artifacts is named **Infrastructure API**. The  high level API represents every kind of abstraction and it is named **Domain API**. So the Infrastructure API is the place for collaboration and knowldege sharing across the whole community. The Domain API is the place to encapsulate your own defaults and architectural decisions. Even if we provide our Domain API as example, it is very easy and intended for you to build your own abstractions aside.
@@ -29,20 +29,20 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | Docker based Integration Tests | Unit Tests for Domain | Use app layer | DDD ns layout | CI | fat-folder | sozial links | SecretResolving | core-app |
 | --- | --- |  ----------------------------- | --------------------- | ------------- | ------------- | --- | --------- | ------------ | --------------- | -------- |
-| dda-config-commons  | 1.3.1 | - | - | - | - | x | x | x | x | - |
-| dda-pallet-commons  | 1.3.1 | - | - | - | - | x | x | x | x | - |
-| dda-pallet          | 2.2.0 |   | x | x | x | x | x | x | x | x |
-| dda-user-crate      | 1.0.3 |   | x | x | x | x | x | x | x | x |
-| dda-backup-crate    | 1.0.1 |   | x | x | x | x | x | x | x | x |
-| dda-git-crate       | 1.0.1 |   | x | x | x | x | x | x |   | x |
-| dda-hardening-crate | 1.0.2 |   | x | x | x | x | x | x | - | x |
-| dda-httpd-crate     | 2.0.4 |   | x | x | x | x | x | x | x | x |
-| dda-liferay-crate   | 1.0.0 |   | x | x | x | x | x | x | x |   |
-| dda-managed-ide     | 1.0.2 |   | x | x | x | x | x | x | x | x |
-| dda-managed-vm      | 1.0.1 |   | x | x | x | x | x | x | x | x |
-| dda-mariadb-crate   | 1.0.1 |   |   | x | x | x | x | x | x | x |
-| dda-serverspec-crate| 1.0.6 |   | x | x | x | x | x | x | x | x |
-| dda-tomcat-crate    | 2.0.0 |   | x | x | x | x | x | x | - | x |
+| dda-config-commons  | 1.4 | - | - | - | - | x | x | x | x | - |
+| dda-pallet-commons  | 1.3 | - | - | - | - | x | x | x | x | - |
+| dda-pallet          | 2.2 |   | x | x | x | x | x | x | x | x |
+| dda-user-crate      | 1.0 |   | x | x | x | x | x | x | x | x |
+| dda-backup-crate    | 1.0 |   | x | x | x | x | x | x | x | x |
+| dda-git-crate       | 1.1 |   | x | x | x | x | x | x | x | x |
+| dda-hardening-crate | 1.1 |   | x | x | x | x | x | x | - | x |
+| dda-httpd-crate     | 2.0 |   | x | x | x | x | x | x | x | x |
+| dda-liferay-crate   | 1.0 |   | x | x | x | x | x | x | x | x |
+| dda-managed-ide     | 1.0 |   | x | x | x | x | x | x | x | x |
+| dda-managed-vm      | 2.0 |   | x | x | x | x | x | x | x | x |
+| dda-mariadb-crate   | 1.0 |   |   | x | x | x | x | x | x | x |
+| dda-serverspec-crate| 1.1 |   | x | x | x | x | x | x | x | x |
+| dda-tomcat-crate    | 2.0 |   | x | x | x | x | x | x | - | x |
 
 # License
 Published under [apache2.0 license](LICENSE.md)
