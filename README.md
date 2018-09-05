@@ -44,5 +44,8 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-serverspec-crate| 1.1 |   | x | x | x | x | x | x | x | x |
 | dda-tomcat-crate    | 2.0 |   | x | x | x | x | x | x | - | x |
 
-# License
-Published under [apache2.0 license](LICENSE.md)
+## License
+
+Copyright © 2015, 2016, 2017, 2018 meissa GmbH
+Licensed under the [Apache License, Version 2.0](LICENSE) (the "License")
+Pls. find licenses of our subcomponents [here](doc/SUBCOMPONENT_LICENSE)
