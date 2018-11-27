@@ -6,10 +6,10 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [commons-codec "1.11"]
                  [prismatic/schema "1.1.9"]
-                 [selmer "1.11.8"]
+                 [selmer "1.12.5"]
                  [dda/pallet "0.9.0"]
-                 [dda/dda-config-commons "1.4.0"]
-                 [dda/dda-pallet-commons "1.3.1"]]
+                 [dda/dda-config-commons "1.4.2"]
+                 [dda/dda-pallet-commons "1.4.1"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]
@@ -22,7 +22,7 @@
                    :resource-paths ["integration/resources"
                                     "test/resources"]
                    :dependencies
-                   [[org.clojure/test.check "0.10.0-alpha2"]
+                   [[org.clojure/test.check "0.10.0-alpha3"]
                     [dda/pallet "0.9.0" :classifier "tests"]
                     [ch.qos.logback/logback-classic "1.3.0-alpha4"]
                     [org.slf4j/jcl-over-slf4j "1.8.0-beta2"]]
