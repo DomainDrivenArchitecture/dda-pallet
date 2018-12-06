@@ -27,14 +27,14 @@ dda-pallet is the core library. If you are looking for ready to provision module
 
 Find closer description to the design decisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/6aa12e6226098abf944b87485e0f45a9dcef8395/en/80_devops/40_architecture/Decisions.html
 
-| | Version | Docker based Integration Tests | Artefacts by CI |
-| --- | --- |  ----------------------------- | --------------- |
+| | Version | Dockerized Integration Tests | Artefacts by CI |
+| --- | --- |  --------------------------- | --------------- |
 | dda-config-commons  | 1.4 | - |   |
 | dda-pallet-commons  | 1.3 | - |   |
 | dda-pallet          | 2.2 |   |   |
 | dda-user-crate      | 1.0 |   |   |
 | dda-backup-crate    | 1.0 |   |   |
-| dda-git-crate       | 1.1 | x |   |
+| dda-git-crate       | 1.1 |(x)|   |
 | dda-hardening-crate | 1.1 |   |   |
 | dda-httpd-crate     | 2.0 |   |   |
 | dda-liferay-crate   | 1.0 |   |   |
@@ -42,6 +42,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-managed-vm      | 2.0 |   |   |
 | dda-mariadb-crate   | 1.0 |   |   |
 | dda-serverspec-crate| 1.1 |   |   |
+| dda-smeagol-crate   | 0.1 | x |   |
 | dda-tomcat-crate    | 2.0 |   |   |
 
 ## License
