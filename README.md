@@ -31,15 +31,15 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | --- | --- |  --------------------------- | --------------- | ------------ |
 | dda-config-commons  | 1.4 | - |   |   |
 | dda-pallet-commons  | 1.3 | - |   |   |
-| dda-pallet          | 2.2 |   |   |   |
+| dda-pallet          | 2.2 | - |   |   |
 | dda-user-crate      | 1.0 | x |   |   |
 | dda-backup-crate    | 1.0 |   |   |   |
 | dda-git-crate       | 1.1 | x |   |   |
 | dda-hardening-crate | 1.1 |   |   |   |
 | dda-httpd-crate     | 2.1 | x |   |   |
 | dda-liferay-crate   | 1.0 |   |   |   |
-| dda-managed-ide     | 1.0 |   |   |   |
-| dda-managed-vm      | 2.3 | x |   |   |
+| dda-managed-ide     | 2.1 | x |   |   |
+| dda-managed-vm      | 2.4 | x |   |   |
 | dda-mariadb-crate   | 1.0 |   |   |   |
 | dda-serverspec-crate| 1.3 | x |   | x |
 | dda-smeagol-crate   | 0.1 | x |   | x |
