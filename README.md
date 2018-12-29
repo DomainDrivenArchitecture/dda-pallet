@@ -31,7 +31,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | --- | --- |  --------------------------- | --------------- | ------------ |
 | dda-config-commons  | 1.4 | - |   |   |
 | dda-pallet-commons  | 1.3 | - |   |   |
-| dda-pallet          | 2.2 | - |   |   |
+| dda-pallet          | 2.2 | - |   | x |
 | dda-user-crate      | 1.0 | x |   |   |
 | dda-backup-crate    | 1.0 |   |   |   |
 | dda-git-crate       | 1.1 | x |   |   |
