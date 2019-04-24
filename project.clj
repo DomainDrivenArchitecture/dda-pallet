@@ -8,7 +8,7 @@
                  [prismatic/schema "1.1.10"]
                  [selmer "1.12.12"]
                  [dda/pallet "0.9.1"]
-                 [dda/dda-config-commons "1.4.2"]
+                 [dda/dda-config-commons "1.5.0-SNAPSHOT"]
                  [dda/dda-pallet-commons "1.5.0-SNAPSHOT"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]

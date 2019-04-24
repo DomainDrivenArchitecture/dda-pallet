@@ -29,7 +29,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/cc116493ebcf01b9d5d24aafd7410261d6565663) |
 | --- | --- |  --------------------------- | --------------- | ------------ | ----------- | ----------- |
-| dda-config-commons  | 1.4 | - | - | x | - | - |
+| dda-config-commons  | 1.5 | - | - | x | - | - |
 | dda-pallet-commons  | 1.5 | - | - | x | - | - |
 | dda-pallet          | 2.4 | - | - | x | - | x |
 | dda-user-crate      | 1.0 | x | x | x | x | x |
