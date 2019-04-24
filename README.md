@@ -29,19 +29,19 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/cc116493ebcf01b9d5d24aafd7410261d6565663) |
 | --- | --- |  --------------------------- | --------------- | ------------ | ----------- | ----------- |
-| dda-config-commons  | 1.4 | - |   |   |   |   |
-| dda-pallet-commons  | 1.3 | - |   |   |   |   |
+| dda-config-commons  | 1.4 | - | - |   | - | - |
+| dda-pallet-commons  | 1.5 | - | - |   | - | - |
 | dda-pallet          | 2.2 | - |   | x |   |   |
-| dda-user-crate      | 1.0 | x | x | x |   |   |
+| dda-user-crate      | 1.0 | x | x | x | x | x |
 | dda-backup-crate    | 1.0 |   |   |   |   |   |
-| dda-git-crate       | 1.1 | x |   | x |   |   |
+| dda-git-crate       | 2.2 | x | x | x | x |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |
 | dda-httpd-crate     | 2.1 | x | x | x |   |   |
 | dda-liferay-crate   | 1.0 |   |   |   |   |   |
 | dda-managed-ide     | 2.1 | x | x | x |   |   |
 | dda-managed-vm      | 2.5 | x | x | x | x | x |
 | dda-mariadb-crate   | 1.0 |   |   |   |   |   |
-| dda-serverspec-crate| 1.3 | x | x | x |   |   |
+| dda-serverspec-crate| 1.3 | x | x | x | x |   |
 | dda-smeagol-crate   | 0.1 | x | x | x | x |   |
 | dda-tomcat-crate    | 2.0 |   |   |   |   |   |
 
