@@ -37,4 +37,4 @@
   (exit 0 (styled/styled "SUCESSFUL" :green)))
 
 (defn exit-default-error []
-  (exit 0 (styled/styled "ERROR" :red)))
+  (exit 2 (styled/styled "ERROR" :red)))
