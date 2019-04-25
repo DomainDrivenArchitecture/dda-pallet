@@ -15,8 +15,13 @@
 ; limitations under the License.
 (ns dda.pallet.core.main-helper
   (:require
+   [clojure.string :as str]
    [schema.core :as s]
    [dda.config.commons.styled-output :as styled]))
+
+(defn error-msg [errors]
+  (str "The following errors occurred while parsing your command:\n\n"
+       (str/join \newline errors)))
 
 (defn exit [status msg]
   (println msg)
