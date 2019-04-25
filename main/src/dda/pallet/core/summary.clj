@@ -18,17 +18,17 @@
    [schema.core :as s]
    [dda.config.commons.styled-output :as styled]))
 
-(defn run-results [session]
+(defn- run-results [session]
   (:runs (pallet.core.data-api/session-data session)))
 
-(defn node-results [session]
+(defn- node-results [session]
   (filter some? (:action-results (second (run-results session)))))
 
-(defn summarize-tests [test-results indent verbose]
+(defn- summarize-tests [test-results indent verbose]
   (doseq [test-result (clojure.string/split-lines test-results)]
     (println (str "    " test-result))))
 
-(defn summarize-node-tests [action-results indent verbose]
+(defn- summarize-node-tests [action-results indent verbose]
   (doseq [action-result action-results]
     (let [{:keys [context summary-text out result]} action-result]
       (println (str "  " context " - ")
@@ -38,13 +38,18 @@
       (when (> verbose 0)
         (summarize-tests out (+ 2 indent) verbose)))))
 
-(defn tests-passed? [action-result]
+(defn- tests-passed? [action-result]
   (get-in action-result [:result :test-passed]))
 
-(defn run-passed?
+(defn- test-run-passed?
   [run]
   (let [action-results (filter some? (:action-results run))]
     (every? tests-passed? action-results)))
+
+(defn test-session-passed?
+  [session]
+  (let [runs (run-results session)]
+    (every? test-run-passed? runs)))
 
 (defn summarize-test-session
   [session & {:keys [verbose] :or {verbose 0}}]
@@ -54,12 +59,15 @@
         (println
           (str
             (get-in run [:node :primary-ip]) " - "
-            (if (run-passed? run)
+            (if (test-run-passed? run)
               (styled/styled "PASSED" :green)
               (styled/styled "FAILED" :red))))
         (summarize-node-tests action-results 2 verbose)))))
 
-(defn session-passed?
+(defn default-session-passed?
+  "was the session application sucessful?"
   [session]
-  (let [runs (run-results session)]
-    (every? run-passed? runs)))
+  (let [results (:results session)
+        phases (map #(-> % :result) results)
+        exit-codes (map #(-> % :exit) (flatten phases))]
+    (every? #(or (= 0 %) (= nil %)) exit-codes)))

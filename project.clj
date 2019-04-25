@@ -1,4 +1,4 @@
-(defproject dda/dda-pallet "2.3.0-SNAPSHOT"
+(defproject dda/dda-pallet "3.0.0-SNAPSHOT"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :license {:name "Apache License, Version 2.0"

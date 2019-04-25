@@ -76,7 +76,9 @@
 (defprotocol SessionSummarization
   (summarize-test-session [crate-app session & options]
     "make summary of tests session")
-  (session-passed? [crate-app session]
+  (test-session-passed? [crate-app session]
+    "inspect session whether all tests has passed.")
+  (default-session-passed? [crate-app session]
     "inspect session whether all tests has passed."))
 
 (defprotocol ExistingTargets
@@ -141,8 +143,11 @@
     (apply summary/summarize-test-session (cons session options)))
     ; TODO: validate as soon as pallet-commons issue is fixed
     ;[session :- session/SessionSpec]
-  (session-passed? [crate-app session]
-    (let [result (apply summary/session-passed? '(session))]
+  (test-session-passed? [crate-app session]
+    (let [result (apply summary/test-session-passed? '(session))]
+      (s/validate s/Bool result)))
+  (default-session-passed? [crate-app session]
+    (let [result (apply summary/default-session-passed? '(session))]
       (s/validate s/Bool result)))
 
   ExistingTargets
@@ -182,25 +187,25 @@
                    (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
-      (summary/session-passed? session)))
+      (summary/test-session-passed? session)))
   (execute-existing-app-rollout [crate-app domain-config target-config]
     (let [session (operation/do-app-rollout
                    (existing-provider crate-app target-config)
                    (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
-      session))
+      (summary/default-session-passed? session)))
   (execute-existing-install [crate-app domain-config target-config]
     (let [session (operation/do-apply-install
                    (existing-provider crate-app target-config)
                    (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
-      session))
+      (summary/default-session-passed? session)))
   (execute-existing-configure [crate-app domain-config target-config]
     (let [session (operation/do-apply-configure
                    (existing-provider crate-app target-config)
                    (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
-      session))
+      (summary/default-session-passed? session)))
 
   AwsTargets
   (load-aws-targets [crate-app file-name]
@@ -241,17 +246,19 @@
                    (aws-provisioning-spec crate-app domain-config target-config 0)
                    :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
-      (summary/session-passed? session)))
+      (summary/test-session-passed? session)))
   (execute-aws-install [crate-app domain-config target-config count]
-    (operation/do-converge-install
-     (aws-provider crate-app target-config)
-     (aws-provisioning-spec crate-app domain-config target-config count)
-     :summarize-session true))
+    (let [session (operation/do-converge-install
+                   (aws-provider crate-app target-config)
+                   (aws-provisioning-spec crate-app domain-config target-config count)
+                   :summarize-session true)]
+      (summary/default-session-passed? session)))
   (execute-aws-configure [crate-app domain-config target-config]
-    (operation/do-apply-configure
-     (aws-provider crate-app target-config)
-     (aws-provisioning-spec crate-app domain-config target-config 0)
-     :summarize-session true))
+    (let [session (operation/do-apply-configure
+                   (aws-provider crate-app target-config)
+                   (aws-provisioning-spec crate-app domain-config target-config 0)
+                   :summarize-session true)]
+      (summary/default-session-passed? session)))
 
   ExistingIntegration
   (existing-install [crate-app options]
