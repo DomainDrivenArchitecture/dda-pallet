@@ -23,6 +23,14 @@
   (str "The following errors occurred while parsing your command:\n\n"
        (str/join \newline errors)))
 
+(def cli-options
+  [["-h" "--help"]
+   ["-s" "--serverspec"]
+   ["-c" "--configure"]
+   ["-t" "--targets targets.edn" "edn file containing the targets to install on."
+    :default "localhost-target.edn"]
+   ["-v" "--verbose"]])
+
 (defn exit [status msg]
   (println msg)
   (System/exit status))
