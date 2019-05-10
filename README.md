@@ -8,18 +8,20 @@ dda-pallet is a DevOps system for cloud image provisioning, test driven DevOps a
 
 ## Compatibility
 Dda-pallet is compatible with the following versions
- * pallet 0.9
- * clojure 1.9
- * (x)ubuntu 16.04 / 18.04
+
+* pallet 0.9
+* clojure 1.9
+* (x)ubuntu 16.04 / 18.04
 
 ## Principles
-  * Adaptable architectural Abstraction Layer: Every Module provides two levels of API. First the low level API oriented on linux installation artifacts is named **Infrastructure API**. The  high level API represents every kind of abstraction and it is named **Domain API**. So the Infrastructure API is the place for collaboration and knowldege sharing across the whole community. The Domain API is the place to encapsulate your own defaults and architectural decisions. Even if we provide our Domain API as example, it is very easy and intended for you to build your own abstractions aside.
- * Imutable infrastructure: We do most of our installations as one shoot installation. This helps to keep things simple and aligns to the clouds immutable infrastructure model.
- * Distinction between installation and configuration: We distinguish between one shoot installation and continuous configuration. Sometimes immutability does not work for infrastructure, sometimes a rapid configuration change has to be applied to stateful targets. For these cases our modules use the configuration stage.
- * Facts: We collect all the system state information needed at a defined place and point in time. We call them facts. We use facts for running our tests and sometimes to decide how to do continuous configuration. But to keep things simple, we try to use facts very rarely.
- * Full modularization: We separate our modules into common usable system adapters and company specific convention modules. Beside this general principle we are using the full tool stack provided by Clojure. Every pice of code may be factored out as cloujure jar, named and versioned.
- * Configuration is data: In order to keep the interface simple, clean & isolated, we handle all configuration as data. There is no hidden magic.
- * Test-driven DevOps: Domain API as data to data transformation makes it easy, to do unit tests. For the Infrastructure API we are heading towards state-of-the-art integration tests - comparable to Kitchen / Vagrant / Server-spec or packer.
+
+* Adaptable architectural Abstraction Layer: Every Module provides two levels of API. First the low level API oriented on linux installation artifacts is named **Infrastructure API**. The  high level API represents every kind of abstraction and it is named **Domain API**. So the Infrastructure API is the place for collaboration and knowldege sharing across the whole community. The Domain API is the place to encapsulate your own defaults and architectural decisions. Even if we provide our Domain API as example, it is very easy and intended for you to build your own abstractions aside.
+* Imutable infrastructure: We do most of our installations as one shoot installation. This helps to keep things simple and aligns to the clouds immutable infrastructure model.
+* Distinction between installation and configuration: We distinguish between one shoot installation and continuous configuration. Sometimes immutability does not work for infrastructure, sometimes a rapid configuration change has to be applied to stateful targets. For these cases our modules use the configuration stage.
+* Facts: We collect all the system state information needed at a defined place and point in time. We call them facts. We use facts for running our tests and sometimes to decide how to do continuous configuration. But to keep things simple, we try to use facts very rarely.
+* Full modularization: We separate our modules into common usable system adapters and company specific convention modules. Beside this general principle we are using the full tool stack provided by Clojure. Every pice of code may be factored out as cloujure jar, named and versioned.
+* Configuration is data: In order to keep the interface simple, clean & isolated, we handle all configuration as data. There is no hidden magic.
+* Test-driven DevOps: Domain API as data to data transformation makes it easy, to do unit tests. For the Infrastructure API we are heading towards state-of-the-art integration tests - comparable to Kitchen / Vagrant / Server-spec or packer.
 
 dda-pallet is the core library. If you are looking for ready to provision modules you will find many dda-pallet modules named dda-\*-crate aside of this project. Most of them provide a fat-jar for instant usage.
 
