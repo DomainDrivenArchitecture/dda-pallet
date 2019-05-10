@@ -32,7 +32,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-config-commons  | 1.5 | - | - | x | - | - | - |
 | dda-pallet-commons  | 1.5 | - | - | x | - | - | - |
 | dda-pallet          | 3.0 | - | - | x | - | x | - |
-| dda-user-crate      | 1.0 | x | x | x | x | x |   |
+| dda-user-crate      | 1.0 | x | x | x | x | x | x |
 | dda-backup-crate    | 1.0 |   |   |   |   |   |   |
 | dda-git-crate       | 2.2 | x | x | x | x |   |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |
