@@ -20,8 +20,6 @@
    [pallet.actions :as actions]
    [pallet.api :as api]
    [clojure.tools.logging :as logging]
-   [dda.config.commons.map-utils :as map-utils]
-   [dda.config.commons.version-model :as version-model]
    [dda.pallet.core.infra.config :as config]))
 
 (defprotocol PalletSpecification
