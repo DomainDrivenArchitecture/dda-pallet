@@ -17,7 +17,6 @@
 (ns dda.pallet.dda-config-crate.infra
   (:require
     [clojure.tools.logging :as logging]
-    [pallet.api :as api]
     [pallet.crate :as crate]
     [pallet.actions :as actions]
     [dda.pallet.core.infra :as infra-core]))
