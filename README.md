@@ -31,19 +31,18 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 | | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/980968d1544bf1341888d5a2da00c6247e23e88a) | [modern hashes](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/f8ab1fd966ed596068f02b762f9620574c783cb6) | [use data-test](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/43abadbdb96afde6b1dc85834e465ee61eb464d2) | [link mastodon](https://github.com/DomainDrivenArchitecture/data-test/commit/041bf204269033941df14be38f7ed0d9649aa513) |
 | --- | --- |  --------------------------- | --------------- | ------------ | ----------- | ----------- | ----------- | ----------- | ----------- |
-| dda-config-commons  | 1.5 | - | - | x | - | - | - | - |   |
-| dda-config-commons  | 1.5 | - | - | x | - | - | - | - |   |
-| dda-pallet-commons  | 1.5 | - | - | x | - | - | - | - |   |
+| dda-config-commons  | 1.5 | - | - | x | - | - | - | - | x |
+| dda-pallet-commons  | 1.5 | - | - | x | - | - | - | - | x |
 | dda-pallet          | 3.0 | - | - | x | - | x | - |   | x |
-| dda-user-crate      | 1.0 | x | x | x | x | x | x |   |   |
-| dda-backup-crate    | 1.0 |   |   |   |   |   |   |   |   |
-| dda-git-crate       | 2.2 | x | x | x | x |   |   |   |   |
+| dda-user-crate      | 1.0 | x | x | x | x | x | x |   | x |
+| dda-backup-crate    | 1.0 |   |   |   |   |   |   |   | x |
+| dda-git-crate       | 2.2 | x | x | x | x |   |   |   | x |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |   |
 | dda-httpd-crate     | 2.1 | x | x | x |   |   |   |   |   |
 | dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x | x |
 | dda-liferay-crate   | 1.0 |   |   |   |   |   |   |   |   |
 | dda-managed-ide     | 3.1 | x | x | x | x | x | x |   | x |
-| dda-managed-vm      | 2.5 | x | x | x | x | x | x |   |   |
+| dda-managed-vm      | 2.5 | x | x | x | x | x | x |   | x |
 | dda-mariadb-crate   | 1.0 |   |   |   |   |   |   |   |   |
 | dda-serverspec-crate| 1.3 | x | x | x | x | x | x | x | x |
 | dda-smeagol-crate   | 0.1 | x | x | x | x |   |   |   |   |
