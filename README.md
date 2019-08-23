@@ -2,7 +2,7 @@
 [![Clojars Project](https://img.shields.io/clojars/v/dda/dda-pallet.svg)](https://clojars.org/dda/dda-pallet)
 [![Build Status](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet.svg?branch=master)](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet)
 
-[![Slack](https://img.shields.io/badge/chat-clojurians-green.svg?style=flat)](https://clojurians.slack.com/messages/#dda-pallet/) | [<img src="https://domaindrivenarchitecture.org/img/meetup.svg" width=50 alt="DevOps Hacking with Clojure Meetup"> DevOps Hacking with Clojure](https://www.meetup.com/de-DE/preview/dda-pallet-DevOps-Hacking-with-Clojure) | [Website & Blog](https://domaindrivenarchitecture.org)
+[![Slack](https://img.shields.io/badge/chat-clojurians-green.svg?style=flat)](https://clojurians.slack.com/messages/#dda-pallet/) | [<img src="https://meissa-gmbh.de/img/community/Mastodon_Logotype.svg" width=20 alt="team@social.meissa-gmbh.de"> team@social.meissa-gmbh.de](https://social.meissa-gmbh.de/@team) | [Website & Blog](https://domaindrivenarchitecture.org)
 
 dda-pallet is a DevOps system for cloud image provisioning, test driven DevOps and continuous server configuration. dda-pallet allows to build your own abstraction layer very easily as pure data to data transformation while providing a stable low level API. It is modular, testable and well-prepared for the handling of configuration data. dda-pallet is open-source, written in Clojure and runs on the proven Java Virtual Machine. Anyone who has dealt with Infrastructure as Code so far, has to deal with a mix of Ruby, Python and Go. If you want to get more from the Java world and if you always wanted to try functional programming, there is now a worthy & fresh alternative: "dda-pallet".
 
@@ -34,12 +34,13 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-config-commons  | 1.5 | - | - | x | - | - | - | - |   |
 | dda-config-commons  | 1.5 | - | - | x | - | - | - | - |   |
 | dda-pallet-commons  | 1.5 | - | - | x | - | - | - | - |   |
-| dda-pallet          | 3.0 | - | - | x | - | x | - |   |   |
+| dda-pallet          | 3.0 | - | - | x | - | x | - |   | x |
 | dda-user-crate      | 1.0 | x | x | x | x | x | x |   |   |
 | dda-backup-crate    | 1.0 |   |   |   |   |   |   |   |   |
 | dda-git-crate       | 2.2 | x | x | x | x |   |   |   |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |   |
 | dda-httpd-crate     | 2.1 | x | x | x |   |   |   |   |   |
+| dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x | x |
 | dda-liferay-crate   | 1.0 |   |   |   |   |   |   |   |   |
 | dda-managed-ide     | 3.1 | x | x | x | x | x | x |   | x |
 | dda-managed-vm      | 2.5 | x | x | x | x | x | x |   |   |
