@@ -36,7 +36,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-pallet          | 3.0 | - | - | x | - | x | - |   |
 | dda-user-crate      | 1.0 | x | x | x | x | x | x |   |
 | dda-backup-crate    | 1.0 |   |   |   |   |   |   |   |
-| dda-git-crate       | 2.2 | x | x | x | x |   |   |   |
+| dda-git-crate       | 2.2 | x | x | x | x | x | x | x |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |
 | dda-httpd-crate     | 2.1 | x | x | x |   |   |   |   |
 | dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x |
