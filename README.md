@@ -41,8 +41,8 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-httpd-crate     | 2.1 | x | x | x |   |   |   |   |
 | dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x |
 | dda-liferay-crate   | 1.0 |   |   |   |   |   |   |   |
-| dda-managed-ide     | 3.1 | x | x | x | x | x | x |   |
-| dda-managed-vm      | 2.5 | x | x | x | x | x | x |   |
+| dda-managed-ide     | 3.1 | x | x | x | x | x | x | x |
+| dda-managed-vm      | 2.6 | x | x | x | x | x | x | x |
 | dda-mariadb-crate   | 1.0 |   |   |   |   |   |   |   |
 | dda-serverspec-crate| 1.3 | x | x | x | x | x | x | x |
 | dda-smeagol-crate   | 0.1 | x | x | x | x |   |   |   |
