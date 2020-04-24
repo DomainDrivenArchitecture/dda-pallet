@@ -1,4 +1,4 @@
-(defproject dda/dda-pallet "3.1.1-SNAPSHOT"
+(defproject dda/dda-pallet "3.1.1"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :license {:name "Apache License, Version 2.0"
@@ -9,7 +9,7 @@
                  [selmer "1.12.23"]
                  [dda/pallet "0.9.1"]
                  [dda/dda-config-commons "1.5.0"]
-                 [dda/dda-pallet-commons "1.6.0"]]
+                 [dda/dda-pallet-commons "1.6.1"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]
