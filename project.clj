@@ -1,4 +1,4 @@
-(defproject dda/dda-pallet "3.1.2-SNAPSHOT"
+(defproject dda/dda-pallet "3.1.2"
   :description "The dda-crate"
   :url "https://www.domaindrivenarchitecture.org"
   :license {:name "Apache License, Version 2.0"
@@ -6,10 +6,10 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [commons-codec "1.14"]
                  [prismatic/schema "1.1.12"]
-                 [selmer "1.12.23"]
+                 [selmer "1.12.27"]
                  [dda/pallet "0.9.1"]
                  [dda/dda-config-commons "1.5.0"]
-                 [dda/dda-pallet-commons "1.6.1"]]
+                 [dda/dda-pallet-commons "1.6.4"]]
   :source-paths ["main/src"]
   :resource-paths ["main/resources"]
   :repositories [["snapshots" :clojars]
