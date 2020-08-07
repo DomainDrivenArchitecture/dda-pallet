@@ -29,7 +29,7 @@ dda-pallet is the core library. If you are looking for ready to provision module
 
 Find closer description to the design decisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/6aa12e6226098abf944b87485e0f45a9dcef8395/en/80_devops/40_architecture/Decisions.html
 
-| | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/980968d1544bf1341888d5a2da00c6247e23e88a) | [modern hashes](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/f8ab1fd966ed596068f02b762f9620574c783cb6) | [use data-test](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/43abadbdb96afde6b1dc85834e465ee61eb464d2) | [pyb for docker]() | [provizionize]() | convention instead of domain | infra as primary api | remove '-crate' |
+| | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/980968d1544bf1341888d5a2da00c6247e23e88a) | [modern hashes](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/f8ab1fd966ed596068f02b762f9620574c783cb6) | [use data-test](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/43abadbdb96afde6b1dc85834e465ee61eb464d2) | [pyb for docker](https://github.com/DomainDrivenArchitecture/dda-git-crate/commit/1b8325b94a6e3ceb77b2651965b1206749dd203f) | [provizionize]() | convention instead of domain | infra as primary api | remove '-crate' |
 | --- | --- |  --------------------------- | --------------- | ------------ | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | dda-config-commons  | 1.5 | - | - | x | - | - | - | - | - | - |   |   |   |
 | dda-povision        | 0.2 | - | - | x | - | - | - | - | - | - |   |   |   |
@@ -37,11 +37,11 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-pallet          | 3.1 | - | - | x | - | x | - |   | - | - |   |   |   |
 | dda-user-crate      | 2.1 | x | x | x | x | x | x |   | x | x |   |   |   |
 | dda-backup          | 0.1 |   |   |   |   |   |   |   |   |   |   |   |   |
-| dda-git-crate       | 2.2 | x | x | x | x | x | x | x |   |   |   |   |   |
+| dda-git-crate       | 2.2 | x | x | x | x | x | x | x | x | x |   |   |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |   |   |   |   |   |
 | dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x |   |   |   |   |   |
 | dda-managed-ide     | 3.1 | x | x | x | x | x | x | x |   |   |   |   |   |
-| dda-managed-vm      | 2.6 | x | x | x | x | x | x | x |   |   |   |   |   |
+| dda-managed-vm      | 2.6 | x | x | x | x | x | x | x | x | x |   |   |   |
 | dda-serverspec-crate| 1.3 | x | x | x | x | x | x | x |   |   |   |   |   |
 | dda-smeagol-crate   | 0.1 | x | x | x | x |   |   |   |   |   |   |   |   |
 
