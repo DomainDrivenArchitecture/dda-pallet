@@ -13,7 +13,8 @@
 ; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
-(ns dda.pallet.core.app
+(ns dda.pallet.core.app-3-2
+  {:deprecated "4.0"}
   (:require
    [schema.core :as s]
    [clojure.tools.logging :as logging]
@@ -29,9 +30,9 @@
 
 (s/defrecord DdaCrateApp
   [facility :- s/Keyword
-   convention-schema :- {s/Any s/Any}
-   convention-schema-resolved :- {s/Any s/Any}
-   default-convention-file :- s/Str
+   domain-schema :- {s/Any s/Any}
+   domain-schema-resolved :- {s/Any s/Any}
+   default-domain-file :- s/Str
    default-targets-file :- s/Str]
   Object
   (toString [_] (str "DdaCrateApp[facility=" (:facility _) "]")))
@@ -40,7 +41,7 @@
   "Dispatcher for phase multimethods by facility. Also does a
    schema validation of arguments."
   [crate-app :- DdaCrateApp
-   convention-config]
+   domain-config]
   (:facility crate-app))
 
 (defmulti group-spec
@@ -48,20 +49,20 @@
   dispatch-by-crate-facility)
 (s/defmethod group-spec :default
   [crate-app  :- DdaCrateApp
-   convention-config]
+   domain-config]
   (logging/info
     (str crate-app) ": there is no group spec."))
 
-(defmulti load-convention-hook
-  "Multimethod to modify convention after load."
+(defmulti load-domain-hook
+  "Multimethod to modify domain after load."
   dispatch-by-crate-facility)
-(s/defmethod load-convention-hook :default
+(s/defmethod load-domain-hook :default
   [crate-app  :- DdaCrateApp
-   convention-config]
-  convention-config)
+   domain-config]
+  domain-config)
 
 (defmulti load-existing-targets-hook
-  "Multimethod to modify convention after load."
+  "Multimethod to modify domain after load."
   dispatch-by-crate-facility)
 (s/defmethod load-existing-targets-hook :default
   [crate-app  :- DdaCrateApp
@@ -69,9 +70,9 @@
   targets)
 
 (defprotocol Domain
-  (load-convention
+  (load-domain
     [crate-app file-name]
-    "load the convention from classpath or filesystem."))
+    "load the domain from classpath or filesystem."))
 
 (defprotocol SessionSummarization
   (summarize-test-session [crate-app session & options]
@@ -92,12 +93,12 @@
   (existing-provider
     [crate-app targets-config]
     "the existing provider for unresolved configuration")
-  (existing-provisioning-spec-resolved [crate-app convention-config targets-config])
-  (existing-provisioning-spec [crate-app convention-config targets-config])
-  (execute-existing-serverspec [crate-app convention-config target-config verbosity])
-  (execute-existing-install [crate-app convention-config target-config])
-  (execute-existing-configure [crate-app convention-config target-config])
-  (execute-existing-app-rollout [crate-app convention-config target-config]))
+  (existing-provisioning-spec-resolved [crate-app domain-config targets-config])
+  (existing-provisioning-spec [crate-app domain-config targets-config])
+  (execute-existing-serverspec [crate-app domain-config target-config verbosity])
+  (execute-existing-install [crate-app domain-config target-config])
+  (execute-existing-configure [crate-app domain-config target-config])
+  (execute-existing-app-rollout [crate-app domain-config target-config]))
 
 (defprotocol AwsTargets
   "Protocol for interact on existing targets"
@@ -110,11 +111,11 @@
   (aws-provider
     [crate-app targets-config]
     "the existing provider for unresolved configuration")
-  (aws-provisioning-spec-resolved [crate-app convention-config targets-config count])
-  (aws-provisioning-spec [crate-app convention-config targets-config count])
-  (execute-aws-serverspec [crate-app convention-config target-config verbosity])
-  (execute-aws-install [crate-app convention-config target-config count])
-  (execute-aws-configure [crate-app convention-config target-config]))
+  (aws-provisioning-spec-resolved [crate-app domain-config targets-config count])
+  (aws-provisioning-spec [crate-app domain-config targets-config count])
+  (execute-aws-serverspec [crate-app domain-config target-config verbosity])
+  (execute-aws-install [crate-app domain-config target-config count])
+  (execute-aws-configure [crate-app domain-config target-config]))
 
 (defprotocol ExistingIntegration
   (existing-install [crate-app options])
@@ -130,10 +131,10 @@
 (extend-type DdaCrateApp
 
   Domain
-  (load-convention [crate-app file-name]
+  (load-domain [crate-app file-name]
     (s/validate s/Str file-name)
-    (s/validate (:convention-schema crate-app)
-                (load-convention-hook crate-app
+    (s/validate (:domain-schema crate-app)
+                (load-domain-hook crate-app
                                   (ext-config/parse-config file-name))))
 
   SessionSummarization
@@ -166,44 +167,44 @@
      crate-app
      (existing/resolve-targets targets-config)))
   (existing-provisioning-spec-resolved
-    [crate-app convention-config targets-config]
-    (s/validate (:convention-schema-resolved crate-app) convention-config)
+    [crate-app domain-config targets-config]
+    (s/validate (:domain-schema-resolved crate-app) domain-config)
     (s/validate existing/TargetsResolved targets-config)
     (let [{:keys [existing provisioning-user]} targets-config]
       (merge
-       (group-spec crate-app convention-config)
+       (group-spec crate-app domain-config)
        (existing/node-spec provisioning-user))))
   (existing-provisioning-spec
-    [crate-app convention-config targets-config]
-    (s/validate (:convention-schema crate-app) convention-config)
+    [crate-app domain-config targets-config]
+    (s/validate (:domain-schema crate-app) domain-config)
     (s/validate existing/Targets targets-config)
     (existing-provisioning-spec-resolved
      crate-app
-     (secret/resolve-secrets convention-config (:convention-schema crate-app))
+     (secret/resolve-secrets domain-config (:domain-schema crate-app))
      (existing/resolve-targets targets-config)))
-  (execute-existing-serverspec [crate-app convention-config target-config verbosity]
+  (execute-existing-serverspec [crate-app domain-config target-config verbosity]
     (let [session (operation/do-test
                    (existing-provider crate-app target-config)
-                   (existing-provisioning-spec crate-app convention-config target-config)
+                   (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
       (summary/test-session-passed? session)))
-  (execute-existing-app-rollout [crate-app convention-config target-config]
+  (execute-existing-app-rollout [crate-app domain-config target-config]
     (let [session (operation/do-app-rollout
                    (existing-provider crate-app target-config)
-                   (existing-provisioning-spec crate-app convention-config target-config)
+                   (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
       (summary/default-session-passed? session)))
-  (execute-existing-install [crate-app convention-config target-config]
+  (execute-existing-install [crate-app domain-config target-config]
     (let [session (operation/do-apply-install
                    (existing-provider crate-app target-config)
-                   (existing-provisioning-spec crate-app convention-config target-config)
+                   (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
       (summary/default-session-passed? session)))
-  (execute-existing-configure [crate-app convention-config target-config]
+  (execute-existing-configure [crate-app domain-config target-config]
     (let [session (operation/do-apply-configure
                    (existing-provider crate-app target-config)
-                   (existing-provisioning-spec crate-app convention-config target-config)
+                   (existing-provisioning-spec crate-app domain-config target-config)
                    :summarize-session true)]
       (summary/default-session-passed? session)))
 
@@ -222,120 +223,120 @@
      crate-app
      (aws/resolve-targets targets-config)))
   (aws-provisioning-spec-resolved
-    [crate-app convention-config targets-config count]
-    (s/validate (:convention-schema-resolved crate-app) convention-config)
+    [crate-app domain-config targets-config count]
+    (s/validate (:domain-schema-resolved crate-app) domain-config)
     (s/validate aws/TargetsResolved targets-config)
     (s/validate s/Num count)
     (merge
-     (group-spec crate-app convention-config)
+     (group-spec crate-app domain-config)
      (aws/node-spec (:node-spec targets-config))
      {:count count}))
   (aws-provisioning-spec
-    [crate-app convention-config targets-config count]
-    (s/validate (:convention-schema crate-app) convention-config)
+    [crate-app domain-config targets-config count]
+    (s/validate (:domain-schema crate-app) domain-config)
     (s/validate aws/Targets targets-config)
     (s/validate s/Num count)
     (aws-provisioning-spec-resolved
      crate-app
-     (secret/resolve-secrets convention-config (:convention-schema crate-app))
+     (secret/resolve-secrets domain-config (:domain-schema crate-app))
      (aws/resolve-targets targets-config)
      count))
-  (execute-aws-serverspec [crate-app convention-config target-config verbosity]
+  (execute-aws-serverspec [crate-app domain-config target-config verbosity]
     (let [session (operation/do-test
                    (aws-provider crate-app target-config)
-                   (aws-provisioning-spec crate-app convention-config target-config 0)
+                   (aws-provisioning-spec crate-app domain-config target-config 0)
                    :summarize-session false)]
       (summary/summarize-test-session session :verbose verbosity)
       (summary/test-session-passed? session)))
-  (execute-aws-install [crate-app convention-config target-config count]
+  (execute-aws-install [crate-app domain-config target-config count]
     (let [session (operation/do-converge-install
                    (aws-provider crate-app target-config)
-                   (aws-provisioning-spec crate-app convention-config target-config count)
+                   (aws-provisioning-spec crate-app domain-config target-config count)
                    :summarize-session true)]
       (summary/default-session-passed? session)))
-  (execute-aws-configure [crate-app convention-config target-config]
+  (execute-aws-configure [crate-app domain-config target-config]
     (let [session (operation/do-apply-configure
                    (aws-provider crate-app target-config)
-                   (aws-provisioning-spec crate-app convention-config target-config 0)
+                   (aws-provisioning-spec crate-app domain-config target-config 0)
                    :summarize-session true)]
       (summary/default-session-passed? session)))
 
   ExistingIntegration
   (existing-install [crate-app options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (if (some? targets)
                           (load-existing-targets crate-app targets)
                           (load-existing-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-existing-install crate-app convention-config target-config)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-existing-install crate-app domain-config target-config)))
   (existing-configure [crate-app options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (if (some? targets)
                           (load-existing-targets crate-app targets)
                           (load-existing-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-existing-configure crate-app convention-config target-config)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-existing-configure crate-app domain-config target-config)))
   (existing-serverspec [crate-app options]
-    (let [{:keys [convention targets verbosity]
+    (let [{:keys [domain targets verbosity]
            :or {verbosity 1}} options
           target-config (if (some? targets)
                           (load-existing-targets crate-app targets)
                           (load-existing-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-existing-serverspec crate-app convention-config target-config verbosity)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-existing-serverspec crate-app domain-config target-config verbosity)))
   (existing-app-rollout [crate-app options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (if (some? targets)
                           (load-existing-targets crate-app targets)
                           (load-existing-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-existing-app-rollout crate-app convention-config target-config)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-existing-app-rollout crate-app domain-config target-config)))
 
   AwsIntegration
   (aws-install [crate-app count options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (load-aws-targets crate-app targets)
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-aws-install crate-app convention-config target-config count)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-aws-install crate-app domain-config target-config count)))
   (aws-configure [crate-app options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (if (some? targets)
                           (load-aws-targets crate-app targets)
                           (load-aws-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-aws-configure crate-app convention-config target-config)))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-aws-configure crate-app domain-config target-config)))
   (aws-serverspec [crate-app options]
-    (let [{:keys [convention targets]} options
+    (let [{:keys [domain targets]} options
           target-config (if (some? targets)
                           (load-aws-targets crate-app targets)
                           (load-aws-targets crate-app (:default-targets-file crate-app)))
-          convention-config (if (some? convention)
-                          (load-convention crate-app convention)
-                          (load-convention crate-app (:default-convention-file crate-app)))]
-      (execute-aws-serverspec crate-app convention-config target-config 1))))
+          domain-config (if (some? domain)
+                          (load-domain crate-app domain)
+                          (load-domain crate-app (:default-domain-file crate-app)))]
+      (execute-aws-serverspec crate-app domain-config target-config 1))))
 
 
 (defn make-dda-crate-app
   "Creates a DdaCrateApp. (Wrapper for ->DdaCrateApp with validation.)"
-  [& {:keys [facility convention-schema convention-schema-resolved
-             default-convention-file default-targets-file]
+  [& {:keys [facility domain-schema domain-schema-resolved
+             default-domain-file default-targets-file]
       :or {default-targets-file "targets.edn"}}]
   (s/validate
     DdaCrateApp
-    (->DdaCrateApp facility convention-schema convention-schema-resolved
-                   default-convention-file default-targets-file)))
+    (->DdaCrateApp facility domain-schema domain-schema-resolved
+                   default-domain-file default-targets-file)))
 
 (defn pallet-group-spec [app-config server-specs]
  (let [group-name (name (key (first (:group-specific-config app-config))))]
