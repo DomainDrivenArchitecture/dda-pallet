@@ -2,7 +2,7 @@
 [![Clojars Project](https://img.shields.io/clojars/v/dda/dda-pallet.svg)](https://clojars.org/dda/dda-pallet)
 [![Build Status](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet.svg?branch=master)](https://travis-ci.org/DomainDrivenArchitecture/dda-pallet)
 
-[![Slack](https://img.shields.io/badge/chat-clojurians-green.svg?style=flat)](https://clojurians.slack.com/messages/#dda-pallet/) | [<img src="https://meissa-gmbh.de/img/community/Mastodon_Logotype.svg" width=20 alt="team@social.meissa-gmbh.de"> team@social.meissa-gmbh.de](https://social.meissa-gmbh.de/@team) | [Website & Blog](https://domaindrivenarchitecture.org)
+[<img src="https://domaindrivenarchitecture.org/img/delta-chat.svg" width=20 alt="DeltaChat"> chat over e-mail](mailto:buero@meissa-gmbh.de?subject=community-chat) | [<img src="https://meissa-gmbh.de/img/community/Mastodon_Logotype.svg" width=20 alt="team@social.meissa-gmbh.de"> team@social.meissa-gmbh.de](https://social.meissa-gmbh.de/@team) | [Website & Blog](https://domaindrivenarchitecture.org)
 
 dda-pallet is a DevOps system for cloud image provisioning, test driven DevOps and continuous server configuration. dda-pallet allows to build your own abstraction layer very easily as pure data to data transformation while providing a stable low level API. It is modular, testable and well-prepared for the handling of configuration data. dda-pallet is open-source, written in Clojure and runs on the proven Java Virtual Machine. Anyone who has dealt with Infrastructure as Code so far, has to deal with a mix of Ruby, Python and Go. If you want to get more from the Java world and if you always wanted to try functional programming, there is now a worthy & fresh alternative: "dda-pallet".
 
@@ -10,7 +10,7 @@ dda-pallet is a DevOps system for cloud image provisioning, test driven DevOps a
 Dda-pallet is compatible with the following versions
 
 * pallet 0.9
-* clojure 1.9
+* clojure 1.10
 * (x)ubuntu 18.04 / 20.04
 
 ## Principles
@@ -29,20 +29,20 @@ dda-pallet is the core library. If you are looking for ready to provision module
 
 Find closer description to the design decisions outlined here: https://dda.gitbooks.io/domaindrivenarchitecture/content/v/6aa12e6226098abf944b87485e0f45a9dcef8395/en/80_devops/40_architecture/Decisions.html
 
-| | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/980968d1544bf1341888d5a2da00c6247e23e88a) | [modern hashes](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/f8ab1fd966ed596068f02b762f9620574c783cb6) | [use data-test](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/43abadbdb96afde6b1dc85834e465ee61eb464d2) | [pyb for docker](https://github.com/DomainDrivenArchitecture/dda-git-crate/commit/1b8325b94a6e3ceb77b2651965b1206749dd203f) | [provizionize](xx) | [convention instead of domain](https://github.com/DomainDrivenArchitecture/dda-git-crate/commit/848a84b0663719429e279c1257f85d8ea71fe18a) | [infra as primary api] | remove '-crate' |
+| | Version | [Dockerized Integration Tests](https://github.com/DomainDrivenArchitecture/dda-httpd-crate/commit/116d3f8fabcbe9b15eeee65b8d2ada15fe2143f5) | Artefacts by CI | Subcomp. Lic | [Target %s](https://github.com/DomainDrivenArchitecture/dda-managed-vm/commit/0f25a59a46e372ed6fd4a3d1fbbabd920dd9f01e) | [break on error](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/980968d1544bf1341888d5a2da00c6247e23e88a) | [modern hashes](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/f8ab1fd966ed596068f02b762f9620574c783cb6) | [use data-test](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/43abadbdb96afde6b1dc85834e465ee61eb464d2) | [pyb for docker](https://github.com/DomainDrivenArchitecture/dda-git-crate/commit/1b8325b94a6e3ceb77b2651965b1206749dd203f) | [provizionize](xx) | [convention instead of domain](https://github.com/DomainDrivenArchitecture/dda-serverspec-crate/commit/d89060509357722a12ca408b6676e3f6eebff1f9) | [infra as primary api] | remove '-crate' |
 | --- | --- |  --------------------------- | --------------- | ------------ | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | dda-config-commons  | 1.5 | - | - | x | - | - | - | - | - | - |   |   |   |
 | dda-povision        | 0.2 | - | - | x | - | - | - | - | - | - |   |   |   |
 | dda-pallet-commons  | 1.5 | - | - | x | - | - | - | - | - | - |   |   |   |
 | dda-pallet          | 4.0 | - | - | x | - | x | - |   | - | - | x | x |   |
-| dda-user-crate      | 2.1 | x | x | x | x | x | x |   | x | x |   |   |   |
+| dda-user-crate      | 3.0 | x | x | x | x | x | x |   | x | x | x |   |   |
 | dda-backup          | 0.1 |   |   |   |   |   |   |   |   |   |   |   |   |
 | dda-git-crate       | 3.0 | x | x | x | x | x | x | x | x | x | x | x |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |   |   |   |   |   |
 | dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x |   |   |   |   |   |
 | dda-managed-ide     | 3.1 | x | x | x | x | x | x | x |   |   |   |   |   |
 | dda-managed-vm      | 2.6 | x | x | x | x | x | x | x | x | x |   |   |   |
-| dda-serverspec-crate| 1.3 | x | x | x | x | x | x | x |   |   |   |   |   |
+| dda-serverspec-crate| 2.0 | x | x | x | x | x | x | x | x | - | x |   |   |
 | dda-smeagol-crate   | 0.1 | x | x | x | x |   |   |   |   |   |   |   |   |
 
 ## License
