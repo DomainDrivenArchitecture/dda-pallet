@@ -39,7 +39,7 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 | dda-backup          | 0.1 |   |   |   |   |   |   |   |   |   |   |   |   |
 | dda-git-crate       | 3.0 | x | x | x | x | x | x | x | x | x | x | x |   |
 | dda-hardening-crate | 1.1 |   |   |   |   |   |   |   |   |   |   |   |   |
-| dda-k8s-crate       | 0.1 | x | x | x | x | x | x | x |   |   |   |   |   |
+| dda-k8s-crate       | 1.0 | x | x | x | x | x | x | x | x | - | x |   |   |
 | dda-managed-ide     | 3.1 | x | x | x | x | x | x | x |   |   |   |   |   |
 | dda-managed-vm      | 2.6 | x | x | x | x | x | x | x | x | x |   |   |   |
 | dda-serverspec-crate| 2.0 | x | x | x | x | x | x | x | x | - | x |   |   |
