@@ -47,6 +47,6 @@ Find closer description to the design decisions outlined here: https://dda.gitbo
 
 ## License
 
-Copyright © 2015 - 2020 meissa GmbH
+Copyright © 2015 - 2021 meissa GmbH
 Licensed under the [Apache License, Version 2.0](LICENSE) (the "License")
 Pls. find licenses of our subcomponents [here](doc/SUBCOMPONENT_LICENSE)
